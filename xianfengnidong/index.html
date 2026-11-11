@@ -1,0 +1,1509 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>先锋你懂的一区 - 影迷深度内容聚合</title>
+  <meta name="description" content="先锋你懂的一区聚合影迷向深度内容：从冷门修复长片、作者短片到影展新片、纪录片与类型片专题，提供条目速览、版本对比、观影顺序和可核对的事实信息，适合想绕开热门榜单、自己找片单的观众。">
+  <meta name="keywords" content="先锋你懂的一区">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23151413'/%3E%3Cpath d='M7 20l6-8 5 6 3-3 4 5H7z' fill='%23d9a441'/%3E%3Ccircle cx='22' cy='10' r='2.4' fill='%23e8e3d9'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      --font-display: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --bg: #f6f3ee;
+      --surface: #fffdf9;
+      --surface-alt: #f0ebe2;
+      --ink-1: #1b1a18;
+      --ink-2: #5c5850;
+      --ink-3: #8d877c;
+      --line: #dfd8cc;
+      --brand: #b4802c;
+      --brand-deep: #7e561a;
+      --brand-light: #f3e6ce;
+      --accent: #30594c;
+      --accent-light: #dfe9e2;
+      --radius-card: 14px;
+      --radius-btn: 999px;
+      --radius-tag: 6px;
+      --radius-banner: 20px;
+      --shadow-default: 0 2px 8px rgba(32, 27, 18, 0.06);
+      --shadow-hover: 0 10px 24px rgba(32, 27, 18, 0.13);
+      --header-h: 64px;
+      --notice-h: 40px;
+      --sticky-offset: calc(var(--notice-h) + var(--header-h) + 16px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: var(--sticky-offset); }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--ink-1);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+
+    .skip-link {
+      position: absolute; left: 12px; top: -60px;
+      background: var(--brand); color: #fff;
+      padding: 8px 16px; border-radius: var(--radius-tag);
+      z-index: 200; transition: top .2s;
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* ============ 公告条 + 页头 ============ */
+    .sticky-top {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246, 243, 238, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .notice-bar {
+      min-height: var(--notice-h);
+      display: flex; align-items: center; gap: 14px;
+      padding: 6px 20px;
+      font-size: 12.5px;
+      color: var(--ink-2);
+      background: #1b1a18;
+      color: #e8e3d9;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .notice-bar .notice-brand {
+      color: #d9a441; font-weight: 700; letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+    .notice-bar .notice-item { display: inline-flex; gap: 6px; align-items: center; flex-shrink: 0; }
+    .notice-bar .notice-date { color: #a89c88; font-variant-numeric: tabular-nums; }
+    .notice-bar .dot { color: #6d6456; }
+
+    .site-header {
+      height: var(--header-h);
+      display: flex; align-items: center; gap: 28px;
+      max-width: 1380px; margin: 0 auto; padding: 0 20px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: #1b1a18;
+      display: grid; place-items: center;
+    }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .brand-text {
+      font-family: var(--font-display);
+      font-weight: 800; font-size: 17px; letter-spacing: .02em;
+      color: var(--ink-1);
+    }
+
+    .main-nav { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; min-width: 0; }
+    .main-nav a {
+      font-size: 13.5px; color: var(--ink-2);
+      padding: 6px 10px; border-radius: var(--radius-tag);
+      transition: background .18s, color .18s;
+    }
+    .main-nav a:hover, .main-nav a:focus-visible {
+      background: var(--brand-light); color: var(--brand-deep);
+      outline: none;
+    }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .search-box {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-btn);
+      padding: 5px 12px;
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .search-box:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-light); }
+    .search-box input {
+      border: none; background: transparent; outline: none;
+      font-size: 13px; width: 130px; color: var(--ink-1);
+    }
+    .search-box input::placeholder { color: var(--ink-3); }
+    .search-box button {
+      border: none; background: transparent; color: var(--brand-deep);
+      display: grid; place-items: center; padding: 2px;
+    }
+
+    .contribute-btn {
+      background: var(--accent); color: #fff;
+      font-size: 13px; font-weight: 600;
+      padding: 7px 15px; border-radius: var(--radius-btn);
+      border: none; transition: background .18s, transform .18s;
+      white-space: nowrap;
+    }
+    .contribute-btn:hover { background: #234237; transform: translateY(-1px); }
+
+    .menu-toggle {
+      display: none; background: none; border: 1px solid var(--line);
+      border-radius: 8px; width: 38px; height: 36px;
+      align-items: center; justify-content: center;
+    }
+    .menu-toggle svg { width: 20px; height: 20px; }
+
+    /* ============ 首屏 ============ */
+    .hero {
+      max-width: 1380px; margin: 0 auto;
+      padding: 44px 20px 36px;
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      gap: 40px; align-items: center;
+    }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12.5px; font-weight: 600; letter-spacing: .14em;
+      color: var(--brand-deep); text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero-kicker::before { content: ""; width: 24px; height: 2px; background: var(--brand); }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.4vw, 50px);
+      font-weight: 900; line-height: 1.16;
+      letter-spacing: -.01em;
+      color: var(--ink-1);
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 15px; color: var(--ink-2);
+      max-width: 560px; margin-bottom: 26px;
+    }
+    .hero-desc strong { color: var(--brand-deep); font-weight: 700; }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn-primary {
+      background: var(--brand); color: #fff;
+      font-size: 14px; font-weight: 700;
+      padding: 11px 24px; border-radius: var(--radius-btn);
+      border: none; transition: background .18s, transform .18s, box-shadow .18s;
+      box-shadow: var(--shadow-default);
+    }
+    .btn-primary:hover { background: var(--brand-deep); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .btn-ghost {
+      font-size: 14px; font-weight: 600; color: var(--ink-2);
+      padding: 11px 20px; border-radius: var(--radius-btn);
+      border: 1px solid var(--line); background: var(--surface);
+      transition: border-color .18s, color .18s;
+    }
+    .btn-ghost:hover { border-color: var(--brand); color: var(--brand-deep); }
+
+    .hero-stats {
+      display: flex; gap: 26px; margin-top: 30px; flex-wrap: wrap;
+    }
+    .hero-stats div { display: flex; flex-direction: column; }
+    .hero-stats .num { font-size: 22px; font-weight: 800; color: var(--ink-1); font-variant-numeric: tabular-nums; }
+    .hero-stats .lbl { font-size: 12px; color: var(--ink-3); letter-spacing: .04em; }
+
+    .hero-visual {
+      position: relative;
+      border-radius: var(--radius-banner);
+      background: linear-gradient(145deg, #1b1a18 0%, #2d2a24 55%, #423a2c 100%);
+      padding: 26px;
+      min-height: 320px;
+      box-shadow: var(--shadow-default);
+      overflow: hidden;
+    }
+    .hero-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 78% 18%, rgba(217, 164, 65, .28), transparent 52%);
+      pointer-events: none;
+    }
+    .hv-cards { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
+    .hv-card {
+      display: flex; gap: 12px; align-items: center;
+      background: rgba(255, 253, 249, .07);
+      border: 1px solid rgba(255, 253, 249, .13);
+      border-radius: 10px; padding: 10px 12px;
+      animation: hvIn .7s cubic-bezier(.22,.7,.3,1) both;
+    }
+    .hv-card:nth-child(2) { animation-delay: .12s; }
+    .hv-card:nth-child(3) { animation-delay: .24s; }
+    @keyframes hvIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .hv-thumb {
+      width: 46px; height: 46px; border-radius: 8px; flex-shrink: 0;
+      display: grid; place-items: center;
+      font-size: 17px; font-weight: 800; color: #1b1a18;
+      background: linear-gradient(135deg, #e8c987, #c9a25a);
+    }
+    .hv-card:nth-child(2) .hv-thumb { background: linear-gradient(135deg, #9dc3b3, #6d9d8a); }
+    .hv-card:nth-child(3) .hv-thumb { background: linear-gradient(135deg, #e0b6a6, #c98a72); }
+    .hv-meta { min-width: 0; }
+    .hv-meta .t { font-size: 13px; font-weight: 700; color: #f6f3ee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hv-meta .s { font-size: 11.5px; color: #b5ab99; margin-top: 2px; }
+    .hv-foot {
+      position: relative; z-index: 1; margin-top: 18px;
+      font-size: 11.5px; color: #9c9284; letter-spacing: .04em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hv-foot .pulse {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #d9a441; box-shadow: 0 0 0 0 rgba(217,164,65,.6);
+      animation: pulse 2.4s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(217,164,65,.5); }
+      70% { box-shadow: 0 0 0 8px rgba(217,164,65,0); }
+      100% { box-shadow: 0 0 0 0 rgba(217,164,65,0); }
+    }
+
+    /* ============ 主布局 ============ */
+    .layout {
+      max-width: 1380px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 176px minmax(0, 1fr) 248px;
+      gap: 28px;
+      padding: 0 20px 48px;
+      align-items: start;
+    }
+
+    .channel-side { position: sticky; top: var(--sticky-offset); }
+    .channel-side h2 {
+      font-size: 11.5px; letter-spacing: .14em; color: var(--ink-3);
+      font-weight: 700; text-transform: uppercase;
+      margin-bottom: 10px; padding-left: 10px;
+    }
+    .channel-list { display: flex; flex-direction: column; gap: 2px; }
+    .channel-list a {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13.5px; color: var(--ink-2);
+      padding: 8px 10px; border-radius: 8px;
+      transition: background .16s, color .16s;
+    }
+    .channel-list a:hover, .channel-list a:focus-visible,
+    .channel-list a.is-active {
+      background: var(--brand-light); color: var(--brand-deep);
+      font-weight: 600; outline: none;
+    }
+    .channel-list .count { font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+    .channel-list a:hover .count, .channel-list a.is-active .count { color: var(--brand-deep); }
+
+    .main-col { min-width: 0; display: flex; flex-direction: column; gap: 44px; }
+
+    .aux-side { display: flex; flex-direction: column; gap: 22px; position: sticky; top: var(--sticky-offset); }
+
+    /* ============ 通用板块 ============ */
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 14px; margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: 21px; font-weight: 800; letter-spacing: -.01em;
+      color: var(--ink-1);
+    }
+    .section-head .sub { font-size: 12.5px; color: var(--ink-3); }
+    .section-head .head-link {
+      font-size: 12.5px; font-weight: 600; color: var(--brand-deep);
+      border-bottom: 1px solid transparent; transition: border-color .16s;
+    }
+    .section-head .head-link:hover { border-color: var(--brand-deep); }
+
+    /* 领域概览 */
+    .overview-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 26px 28px;
+      box-shadow: var(--shadow-default);
+    }
+    .overview-panel p { font-size: 14.5px; color: var(--ink-2); margin-bottom: 14px; }
+    .overview-panel p:last-child { margin-bottom: 0; }
+    .overview-panel strong { color: var(--ink-1); }
+
+    /* 精选卡片 */
+    .pick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .pick-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .pick-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: #cdbfa9; }
+    .pick-card img { width: 100%; height: 132px; object-fit: cover; background: var(--surface-alt); }
+    .pick-body { padding: 14px 14px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .pick-type {
+      align-self: flex-start;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+      color: var(--brand-deep); background: var(--brand-light);
+      padding: 2px 8px; border-radius: var(--radius-tag);
+    }
+    .pick-body h3 { font-size: 15px; font-weight: 700; line-height: 1.4; color: var(--ink-1); }
+    .pick-body .blurb { font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
+    .pick-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; }
+    .pick-tags span {
+      font-size: 10.5px; color: var(--ink-3);
+      border: 1px solid var(--line); border-radius: var(--radius-tag);
+      padding: 1px 7px;
+    }
+    .pick-foot {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--ink-3); margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .pick-foot .score { color: var(--accent); font-weight: 700; }
+
+    /* 最新更新紧凑列表 */
+    .update-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius-card); overflow: hidden; }
+    .update-row {
+      background: var(--surface);
+      display: grid; grid-template-columns: 78px minmax(0,1fr) auto;
+      gap: 14px; align-items: center;
+      padding: 12px 16px;
+      transition: background .16s;
+    }
+    .update-row:hover { background: #faf6ee; }
+    .update-row .u-date { font-size: 11.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+    .update-row .u-main { min-width: 0; }
+    .update-row .u-title { font-size: 13.5px; font-weight: 600; color: var(--ink-1); }
+    .update-row .u-sum { font-size: 12px; color: var(--ink-3); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .update-row .u-tag {
+      font-size: 10.5px; color: var(--accent); background: var(--accent-light);
+      padding: 2px 9px; border-radius: var(--radius-tag); white-space: nowrap;
+    }
+
+    /* 分类入口 */
+    .cat-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+    .cat-chip {
+      display: flex; flex-direction: column; gap: 3px;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; padding: 13px 14px;
+      transition: border-color .16s, box-shadow .16s, transform .16s;
+    }
+    .cat-chip:hover { border-color: var(--brand); box-shadow: var(--shadow-default); transform: translateY(-2px); }
+    .cat-chip .c-name { font-size: 13.5px; font-weight: 700; color: var(--ink-1); }
+    .cat-chip .c-note { font-size: 11px; color: var(--ink-3); }
+
+    /* 深度解析 */
+    .deep-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-card);
+      padding: 30px 32px;
+      box-shadow: var(--shadow-default);
+    }
+    .deep-panel h3 {
+      font-size: 16px; font-weight: 800; color: var(--ink-1);
+      margin: 26px 0 10px; padding-left: 12px; border-left: 3px solid var(--brand);
+    }
+    .deep-panel h3:first-of-type { margin-top: 6px; }
+    .deep-panel p { font-size: 14px; color: var(--ink-2); margin-bottom: 12px; }
+    .deep-panel ul { margin: 6px 0 14px; padding-left: 4px; }
+    .deep-panel li {
+      font-size: 13.5px; color: var(--ink-2); position: relative;
+      padding-left: 16px; margin-bottom: 7px;
+    }
+    .deep-panel li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--brand); }
+    .deep-quote {
+      background: var(--brand-light); border-radius: 10px;
+      padding: 14px 18px; font-size: 13.5px; color: var(--brand-deep);
+      font-weight: 600; margin: 16px 0;
+    }
+    .fact-table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13px; }
+    .fact-table th, .fact-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+    .fact-table th { font-size: 11.5px; color: var(--ink-3); letter-spacing: .06em; font-weight: 700; }
+    .fact-table td { color: var(--ink-2); }
+    .fact-table td:first-child { font-weight: 600; color: var(--ink-1); }
+
+    /* 体验指南路径 */
+    .path-steps { display: flex; flex-direction: column; gap: 12px; counter-reset: step; }
+    .path-step {
+      display: grid; grid-template-columns: 40px minmax(0,1fr); gap: 14px;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 12px; padding: 16px 18px;
+      transition: border-color .16s;
+    }
+    .path-step:hover { border-color: #cdbfa9; }
+    .path-step .step-num {
+      counter-increment: step;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--brand-light); color: var(--brand-deep);
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 14px;
+    }
+    .path-step .step-num::before { content: counter(step); }
+    .path-step h3 { font-size: 14.5px; font-weight: 700; margin-bottom: 4px; }
+    .path-step p { font-size: 13px; color: var(--ink-2); }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 12px; overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none; cursor: pointer;
+      padding: 15px 18px; font-size: 14px; font-weight: 700;
+      color: var(--ink-1); display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; font-size: 18px; color: var(--brand-deep);
+      font-weight: 400; transition: transform .18s; flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item[open] summary { border-bottom: 1px solid var(--line); }
+    .faq-answer { padding: 14px 18px 16px; font-size: 13.5px; color: var(--ink-2); }
+
+    /* 评论 */
+    .comment-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .comment-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 12px; padding: 14px 16px;
+      display: flex; flex-direction: column; gap: 7px;
+    }
+    .comment-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .comment-name { font-size: 12.5px; font-weight: 700; color: var(--brand-deep); }
+    .comment-time { font-size: 10.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+    .comment-text { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+
+    /* 资讯 */
+    .news-list { display: flex; flex-direction: column; gap: 12px; }
+    .news-item {
+      display: grid; grid-template-columns: 132px minmax(0,1fr);
+      gap: 16px; background: var(--surface);
+      border: 1px solid var(--line); border-radius: 12px;
+      padding: 12px; transition: box-shadow .18s, border-color .18s;
+    }
+    .news-item:hover { box-shadow: var(--shadow-default); border-color: #cdbfa9; }
+    .news-item img { width: 100%; height: 92px; object-fit: cover; border-radius: 8px; }
+    .news-body { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .news-title { font-size: 14px; font-weight: 700; color: var(--ink-1); }
+    .news-meta { font-size: 11px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+    .news-sum { font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
+
+    /* 相关推荐标签索引 */
+    .rec-tag-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rec-tag {
+      font-size: 12.5px; color: var(--ink-2);
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius-btn); padding: 6px 14px;
+      transition: background .16s, color .16s, border-color .16s;
+    }
+    .rec-tag:hover { background: var(--brand-light); color: var(--brand-deep); border-color: var(--brand); }
+
+    /* 侧栏榜单 */
+    .side-panel {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius-card); padding: 18px;
+      box-shadow: var(--shadow-default);
+    }
+    .side-panel h2 {
+      font-size: 14px; font-weight: 800; color: var(--ink-1);
+      margin-bottom: 12px; padding-left: 9px; border-left: 3px solid var(--brand);
+    }
+    .rank-list { display: flex; flex-direction: column; gap: 9px; }
+    .rank-item { display: flex; gap: 10px; align-items: baseline; font-size: 12.5px; }
+    .rank-item .rk {
+      font-weight: 800; font-size: 12px; color: var(--brand-deep);
+      width: 16px; flex-shrink: 0; font-variant-numeric: tabular-nums;
+    }
+    .rank-item .rk-name { flex: 1; min-width: 0; color: var(--ink-2); }
+    .rank-item .rk-hot { font-size: 10.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+    .side-cta {
+      background: linear-gradient(150deg, #30594c, #234237);
+      border-radius: var(--radius-card); padding: 20px;
+      color: #eef4f0;
+    }
+    .side-cta h2 { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+    .side-cta p { font-size: 12.5px; color: #b8cfc5; margin-bottom: 14px; line-height: 1.6; }
+    .side-cta .cta-btn {
+      display: inline-block; background: #e8c987; color: #234237;
+      font-size: 12.5px; font-weight: 700; padding: 8px 18px;
+      border-radius: var(--radius-btn); transition: background .18s;
+    }
+    .side-cta .cta-btn:hover { background: #f0d9a8; }
+
+    /* ============ 页尾 ============ */
+    .site-footer {
+      background: #1b1a18; color: #b5ab99;
+      padding: 46px 20px 30px;
+    }
+    .footer-inner { max-width: 1380px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.3fr 2fr; gap: 40px; margin-bottom: 32px; }
+    .footer-brand .brand-text { color: #f6f3ee; font-size: 18px; }
+    .footer-brand .brand-mark { background: #2d2a24; }
+    .footer-desc { font-size: 12.5px; color: #9c9284; margin-top: 12px; max-width: 360px; line-height: 1.7; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+    .footer-col h3 { font-size: 11.5px; letter-spacing: .12em; color: #7c7365; text-transform: uppercase; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 12.5px; color: #b5ab99; padding: 3px 0; transition: color .16s; }
+    .footer-col a:hover { color: #e8c987; }
+    .footer-bottom {
+      border-top: 1px solid #33302a; padding-top: 20px;
+      font-size: 11.5px; color: #7c7365;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    }
+
+    /* 回到顶部 */
+    .back-top {
+      position: fixed; right: 22px; bottom: 26px;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--brand); color: #fff; border: none;
+      display: grid; place-items: center;
+      box-shadow: var(--shadow-hover); z-index: 90;
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity .25s, visibility .25s, transform .25s, background .18s;
+    }
+    .back-top.show { opacity: 1; visibility: visible; transform: none; }
+    .back-top:hover { background: var(--brand-deep); }
+    .back-top svg { width: 18px; height: 18px; }
+
+    /* 搜索无结果提示 */
+    .search-empty {
+      display: none; font-size: 13px; color: var(--ink-3);
+      padding: 18px; text-align: center; background: var(--surface);
+      border: 1px dashed var(--line); border-radius: var(--radius-card);
+    }
+    .search-empty.show { display: block; }
+    .is-hidden { display: none !important; }
+
+    /* 移动端遮罩 */
+    .nav-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(27, 26, 24, .45); z-index: 110;
+      opacity: 0; transition: opacity .2s;
+    }
+    .nav-overlay.show { display: block; opacity: 1; }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 1100px) {
+      .layout { grid-template-columns: 168px minmax(0,1fr); }
+      .aux-side { display: none; }
+      .pick-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .hero { grid-template-columns: 1fr; gap: 28px; }
+      .hero-visual { min-height: 220px; }
+    }
+
+    @media (max-width: 900px) {
+      .main-nav { display: none; }
+      .main-nav.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: calc(var(--notice-h) + var(--header-h));
+        left: 0; right: 0; z-index: 120;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        padding: 10px 16px 16px; gap: 2px;
+        max-height: calc(100vh - var(--notice-h) - var(--header-h));
+        overflow-y: auto;
+      }
+      .main-nav.open a { padding: 10px 12px; font-size: 15px; }
+      .menu-toggle { display: inline-flex; }
+      .search-box input { width: 96px; }
+    }
+
+    @media (max-width: 740px) {
+      .layout { grid-template-columns: 1fr; gap: 0; }
+      .channel-side { position: static; display: none; }
+      .hero { padding: 30px 16px 26px; }
+      .hero-stats { gap: 18px; }
+      .hero-stats .num { font-size: 19px; }
+      .pick-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .comment-grid { grid-template-columns: 1fr; }
+      .deep-panel { padding: 22px 20px; }
+      .news-item { grid-template-columns: 1fr; }
+      .news-item img { height: 140px; }
+      .update-row { grid-template-columns: 1fr; gap: 4px; }
+      .update-row .u-tag { justify-self: start; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-cols { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .site-header { gap: 14px; }
+      .search-box { display: none; }
+      .contribute-btn { display: none; }
+      .back-top { right: 14px; bottom: 16px; }
+      .notice-bar { padding: 6px 14px; }
+      .section-head h2 { font-size: 18.5px; }
+    }
+
+    @media (max-width: 400px) {
+      .cat-grid { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+
+    :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <div class="sticky-top">
+    <div class="notice-bar" role="status" aria-label="更新公告">
+      <span class="notice-brand">先锋你懂的一区</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <span class="notice-item"><span class="notice-date">11-08</span> 新增《雾港档案》4K修复版条目与画幅对比</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <span class="notice-item"><span class="notice-date">11-06</span> 秋季短片征片已收 217 部，初审 11-12 开始</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <span class="notice-item"><span class="notice-date">11-04</span> 更新“影展首作”片单 12 条</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="/#top" aria-label="先锋你懂的一区 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 17l5-8 4 6 3-4 4 6H4z" fill="#d9a441"/>
+            <circle cx="17.2" cy="7" r="2.2" fill="#e8e3d9"/>
+          </svg>
+        </span>
+        <span class="brand-text">先锋你懂的一区</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="主导航">
+        <a href="/#overview">领域速览</a>
+        <a href="/#picks">精选条目</a>
+        <a href="/#updates">最新更新</a>
+        <a href="/#categories">分类入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">观看路径</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#news">相关资讯</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box" role="search">
+          <input type="search" id="searchInput" placeholder="搜条目 / 导演 / 类型" aria-label="站内搜索">
+          <button type="button" id="searchBtn" aria-label="搜索">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          </button>
+        </div>
+        <a class="contribute-btn" href="/#contribute">作品投稿</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="mainNav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <main id="main-content">
+    <!-- ============ 首屏 ============ -->
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <span class="hero-kicker">Cinema Archive · 影迷向精选</span>
+        <h1 id="heroTitle">先锋你懂的一区</h1>
+        <p class="hero-desc">
+          一个绕开热榜、按版本与作者线索找片的聚合页。这里收<strong>冷门修复长片、作者短片、影展首作、纪录片与类型片专题</strong>，每条都标明画幅、时长、放映介质与可查证的首映信息。适合已经看过主流片单、想自己排观看顺序的人。
+        </p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="/#picks">查看精选条目</a>
+          <a class="btn-ghost" href="/#guide">按路径找片</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="num">184</span><span class="lbl">当前可查条目</span></div>
+          <div><span class="num">27</span><span class="lbl">本周新增</span></div>
+          <div><span class="num">11-08</span><span class="lbl">最近更新</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hv-cards">
+          <div class="hv-card">
+            <span class="hv-thumb">修</span>
+            <div class="hv-meta">
+              <div class="t">《雾港档案》4K 修复版</div>
+              <div class="s">1987 · 112min · 1.66:1</div>
+            </div>
+          </div>
+          <div class="hv-card">
+            <span class="hv-thumb">展</span>
+            <div class="hv-meta">
+              <div class="t">《潮间带》影展首作</div>
+              <div class="s">2026 · 94min · 导演双周</div>
+            </div>
+          </div>
+          <div class="hv-card">
+            <span class="hv-thumb">短</span>
+            <div class="hv-meta">
+              <div class="t">《夜班车》短片竞赛</div>
+              <div class="s">18min · 初审入围</div>
+            </div>
+          </div>
+        </div>
+        <div class="hv-foot"><span class="pulse"></span> 条目信息随修复与展映进度持续校正</div>
+      </div>
+    </section>
+
+    <!-- ============ 三栏布局 ============ -->
+    <div class="layout">
+      <!-- 左频道栏 -->
+      <aside class="channel-side" aria-label="频道索引">
+        <h2>频道索引</h2>
+        <nav class="channel-list">
+          <a href="/#overview">领域速览 <span class="count">1</span></a>
+          <a href="/#picks">精选条目 <span class="count">9</span></a>
+          <a href="/#updates">最新更新 <span class="count">10</span></a>
+          <a href="/#categories">分类入口 <span class="count">8</span></a>
+          <a href="/#deep">深度解析 <span class="count">1</span></a>
+          <a href="/#guide">观看路径 <span class="count">4</span></a>
+          <a href="/#faq">常见问答 <span class="count">6</span></a>
+          <a href="/#comments">影迷评论 <span class="count">14</span></a>
+          <a href="/#news">相关资讯 <span class="count">6</span></a>
+          <a href="/#related">相关推荐 <span class="count">8</span></a>
+          <a href="/#contribute">作品投稿 <span class="count">1</span></a>
+        </nav>
+      </aside>
+
+      <!-- 中主内容 -->
+      <div class="main-col">
+        <!-- 1. 领域概览 -->
+        <section id="overview" aria-labelledby="overviewTitle">
+          <div class="section-head">
+            <h2 id="overviewTitle">领域速览：作者影展与修复长片</h2>
+            <span class="sub">2026 年秋季版本</span>
+          </div>
+          <div class="overview-panel">
+            <p>
+              按“先锋你懂的一区”这个说法找过来的观众，多半已经厌倦了首页推荐。这个领域实际覆盖四块：<strong>修复重映长片</strong>、<strong>影展首作与实验短片</strong>、<strong>作者纪录片</strong>、<strong>类型片冷门重估</strong>。2026 年秋季，修复长片集中在两个方向——1980 年代东亚都市题材的 4K 扫描，以及欧洲实验电影 16mm 转 2K；短片端则受秋季征片季推动，单周新增条目明显。
+            </p>
+            <p>
+              值得关注的具体条目包括《雾港档案》4K 修复版（1987，112 分钟）、纪录片《潮间带》（2026，94 分钟，洛迦诺导演双周）、短片《夜班车》（18 分钟，入围秋季短片竞赛初审）。判断一个条目的信息是否可靠，主要看三项：修复方与扫描规格、首映与展映记录、放映介质（DCP 还是 16mm 拷贝）。三项缺一项，条目仍可标注，但会加“待核”标记。
+            </p>
+            <p>
+              这里不追求覆盖全部新片。条目以“能查到版本差异”和“有明确作者线索”为准入，热门商业片通常不在收录范围。截至 11 月 8 日，站内可查条目 184 条，其中修复长片 61 条、短片 58 条、纪录片 39 条、类型片专题 26 条。
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. 精选内容推荐 -->
+        <section id="picks" aria-labelledby="picksTitle">
+          <div class="section-head">
+            <h2 id="picksTitle">精选条目：按版本与作者线索挑出</h2>
+            <a class="head-link" href="/#categories">按分类筛选 →</a>
+          </div>
+          <div class="pick-grid">
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/wugang1987/400/300" width="400" height="300" loading="lazy" alt="《雾港档案》修复版剧照，雨夜码头与旧式路灯">
+              <div class="pick-body">
+                <span class="pick-type">修复长片</span>
+                <h3>《雾港档案》4K 修复版</h3>
+                <p class="blurb">1987 年都市黑色片，修复版重新校正了原底片的 1.66:1 画幅，并补足 9 分钟被剪段落。看点在雨夜调度与结尾长镜。</p>
+                <div class="pick-tags"><span>4K扫描</span><span>1.66:1</span><span>补足片段</span></div>
+                <div class="pick-foot"><span class="score">8.7</span><span>11-08 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/chaoxian2026/400/300" width="400" height="300" loading="lazy" alt="《潮间带》纪录片画面，退潮后的滩涂与取样人员">
+              <div class="pick-body">
+                <span class="pick-type">作者纪录片</span>
+                <h3>《潮间带》</h3>
+                <p class="blurb">导演跟拍闽东滩涂养殖户三年，94 分钟里没有旁白，靠潮汐时间表串起叙事。洛迦诺导演双周首映后进入亚洲巡展。</p>
+                <div class="pick-tags"><span>导演双周</span><span>无旁白</span><span>三年跟拍</span></div>
+                <div class="pick-foot"><span class="score">8.2</span><span>11-06 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/yebancheshort/400/300" width="400" height="300" loading="lazy" alt="《夜班车》短片剧照，末班公交内景与窗外霓虹">
+              <div class="pick-body">
+                <span class="pick-type">实验短片</span>
+                <h3>《夜班车》</h3>
+                <p class="blurb">18 分钟单场景短片，全片发生在末班公交上，用 3 段不同曝光呈现同一段对话。已入围秋季短片竞赛初审。</p>
+                <div class="pick-tags"><span>单场景</span><span>多重曝光</span><span>初审入围</span></div>
+                <div class="pick-foot"><span class="score">7.9</span><span>11-06 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/shiluo16mm/400/300" width="400" height="300" loading="lazy" alt="《失落的16毫米》修复工作台，胶片盘与扫描设备">
+              <div class="pick-body">
+                <span class="pick-type">实验长片</span>
+                <h3>《失落的 16 毫米》</h3>
+                <p class="blurb">1972 年实验长片首次从 16mm 原底转 2K，保留原片划痕与片门抖动。修复说明列出 14 处无法修复的物理损伤。</p>
+                <div class="pick-tags"><span>16mm转2K</span><span>保留划痕</span><span>修复说明</span></div>
+                <div class="pick-foot"><span class="score">8.0</span><span>11-02 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/diyijian2025/400/300" width="400" height="300" loading="lazy" alt="《第一件作品》剧照，青年导演在剪辑台前">
+              <div class="pick-body">
+                <span class="pick-type">影展首作</span>
+                <h3>《第一件作品》</h3>
+                <p class="blurb">2025 年釜山新浪潮单元首作，导演此前拍过 6 部短片。长片保留短片时期的固定机位习惯，后半段改用跟拍。</p>
+                <div class="pick-tags"><span>釜山新浪潮</span><span>首部长片</span><span>固定机位</span></div>
+                <div class="pick-foot"><span class="score">7.6</span><span>10-29 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/lingchenliangdian/400/300" width="400" height="300" loading="lazy" alt="《凌晨两点》短片画面，空荡街道与便利店灯光">
+              <div class="pick-body">
+                <span class="pick-type">剧情短片</span>
+                <h3>《凌晨两点》</h3>
+                <p class="blurb">22 分钟，讲夜班便利店店员与常客的一夜。导演用两支定焦镜头拍完全片，光线只靠店内灯管与街灯。</p>
+                <div class="pick-tags"><span>单夜叙事</span><span>两支定焦</span><span>自然光</span></div>
+                <div class="pick-foot"><span class="score">7.4</span><span>10-27 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/haianguancha/400/300" width="400" height="300" loading="lazy" alt="《海岸观察》纪录片画面，观测站与远海地平线">
+              <div class="pick-body">
+                <span class="pick-type">纪录长片</span>
+                <h3>《海岸观察》</h3>
+                <p class="blurb">跟拍一座小型海洋观测站 18 个月，记录设备故障与人员轮换。放映介质为 DCP，附带 8 页观测日志影印。</p>
+                <div class="pick-tags"><span>18个月</span><span>观测日志</span><span>DCP</span></div>
+                <div class="pick-foot"><span class="score">7.8</span><span>10-25 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/heiyebaoli/400/300" width="400" height="300" loading="lazy" alt="《黑页》剧照，昏暗室内与堆叠的报纸">
+              <div class="pick-body">
+                <span class="pick-type">类型片重估</span>
+                <h3>《黑页》</h3>
+                <p class="blurb">1994 年低成本悬疑片，当年只上映两周。重估文章指出其剪辑节奏接近同期欧洲犯罪片，而非本土类型套路。</p>
+                <div class="pick-tags"><span>低成本</span><span>上映两周</span><span>剪辑节奏</span></div>
+                <div class="pick-foot"><span class="score">7.1</span><span>10-22 更新</span></div>
+              </div>
+            </article>
+
+            <article class="pick-card">
+              <img src="https://picsum.photos/seed/taiyangxi/400/300" width="400" height="300" loading="lazy" alt="《太阳系边缘》实验短片画面，抽象星轨与16mm颗粒">
+              <div class="pick-body">
+                <span class="pick-type">实验短片</span>
+                <h3>《太阳系边缘》</h3>
+                <p class="blurb">9 分钟无对白，用 16mm 直接曝光制作星轨。放映需 16mm 拷贝，站内标注了可放映的 3 个场地与联系人。</p>
+                <div class="pick-tags"><span>直接曝光</span><span>16mm拷贝</span><span>无对白</span></div>
+                <div class="pick-foot"><span class="score">7.7</span><span>10-20 更新</span></div>
+              </div>
+            </article>
+          </div>
+          <div class="search-empty" id="searchEmpty" role="status" aria-live="polite">没有匹配的条目，换个导演名或类型词试试。</div>
+        </section>
+
+        <!-- 3. 最新更新 -->
+        <section id="updates" aria-labelledby="updatesTitle">
+          <div class="section-head">
+            <h2 id="updatesTitle">最新更新：条目与版本校正</h2>
+            <span class="sub">按更新日期排列</span>
+          </div>
+          <div class="update-list">
+            <div class="update-row">
+              <span class="u-date">11-08</span>
+              <div class="u-main"><div class="u-title">《雾港档案》补足片段时长更正</div><div class="u-sum">由 7 分钟改为 9 分钟，依据修复方 11-07 发布的说明文档第 4 页。</div></div>
+              <span class="u-tag">版本校正</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-08</span>
+              <div class="u-main"><div class="u-title">《潮间带》增加亚洲巡展场次</div><div class="u-sum">新增 11-21 与 11-23 两场，放映介质为 DCP，附导演映后。</div></div>
+              <span class="u-tag">展映信息</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-07</span>
+              <div class="u-main"><div class="u-title">秋季短片竞赛初审名单进度</div><div class="u-sum">217 部投稿已完成编号，初审 11-12 开始，12-01 公布入围。</div></div>
+              <span class="u-tag">征片进度</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-07</span>
+              <div class="u-main"><div class="u-title">《失落的 16 毫米》修复说明增补</div><div class="u-sum">补充 2 处片门抖动的时间码，位于 00:41:12 与 01:03:27。</div></div>
+              <span class="u-tag">修复记录</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-06</span>
+              <div class="u-main"><div class="u-title">《夜班车》导演访谈上线</div><div class="u-sum">访谈 2,400 字，谈到多重曝光的实拍顺序与后期配光。</div></div>
+              <span class="u-tag">访谈</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-05</span>
+              <div class="u-main"><div class="u-title">《第一件作品》釜山场刊引用整理</div><div class="u-sum">摘录场刊 3 段评论，分别来自韩国、法国与日本影评人。</div></div>
+              <span class="u-tag">评论汇编</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-04</span>
+              <div class="u-main"><div class="u-title">“影展首作”片单更新 12 条</div><div class="u-sum">新增 2025—2026 年 12 部首作，均标注首映单元与片长。</div></div>
+              <span class="u-tag">片单</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-03</span>
+              <div class="u-main"><div class="u-title">《黑页》重估文章争议标注</div><div class="u-sum">原文称“接近欧洲犯罪片”，有读者指出参考片目未列全，加注说明。</div></div>
+              <span class="u-tag">信息层级</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">11-02</span>
+              <div class="u-main"><div class="u-title">《太阳系边缘》可放映场地减为 3 处</div><div class="u-sum">原 4 处中一处拷贝损坏，11-01 起停止接收预约。</div></div>
+              <span class="u-tag">放映信息</span>
+            </div>
+            <div class="update-row">
+              <span class="u-date">10-31</span>
+              <div class="u-main"><div class="u-title">《凌晨两点》导演作品年表补全</div><div class="u-sum">补入 2022 年短片《白班》与 2024 年广告短片 2 支。</div></div>
+              <span class="u-tag">作者档案</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. 分类入口 -->
+        <section id="categories" aria-labelledby="categoriesTitle">
+          <div class="section-head">
+            <h2 id="categoriesTitle">分类入口：按内容形态找片</h2>
+            <span class="sub">8 个垂类</span>
+          </div>
+          <div class="cat-grid">
+            <a class="cat-chip" href="/#picks"><span class="c-name">修复长片</span><span class="c-note">4K / 2K 扫描</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">实验短片</span><span class="c-note">16mm / 直接曝光</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">影展首作</span><span class="c-note">新浪潮 / 导演双周</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">作者纪录片</span><span class="c-note">长周期跟拍</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">类型片重估</span><span class="c-note">低成本 / 冷门</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">剧情短片</span><span class="c-note">单场景 / 夜戏</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">实验长片</span><span class="c-note">胶片介质</span></a>
+            <a class="cat-chip" href="/#picks"><span class="c-name">纪录短片</span><span class="c-note">观察式</span></a>
+          </div>
+        </section>
+
+        <!-- 5. 深度解析 -->
+        <section id="deep" aria-labelledby="deepTitle">
+          <div class="section-head">
+            <h2 id="deepTitle">深度解析：修复版到底修了什么</h2>
+            <span class="sub">以《雾港档案》与《失落的 16 毫米》为例</span>
+          </div>
+          <div class="deep-panel">
+            <p>
+              “4K 修复”在条目里经常只是一个标签。拆开看，它至少包含四个可核对的环节：<strong>素材来源</strong>（原底、翻正还是拷贝）、<strong>扫描规格</strong>（分辨率与色深）、<strong>修复范围</strong>（去尘、去划痕、稳定、配光）、<strong>声轨处理</strong>（原始光学声轨转数字）。四项里缺哪项，会直接反映在画质与观看判断上。
+            </p>
+
+            <h3>素材来源决定上限</h3>
+            <p>
+              《雾港档案》修复方在 11-07 的说明里写明，素材为 1987 年原底片，扫描规格 4K / 10bit，画幅 1.66:1。原底保存状况较好，但第 2 本与第 5 本有轻微醋酸综合症。修复范围包括去尘与稳定，配光以 1987 年首映拷贝为参照。声轨则从原始光学声轨转 24bit 数字，保留底噪。
+            </p>
+            <p>
+              对比之下，《失落的 16 毫米》素材是 16mm 原底，扫描 2K / 10bit，修复方明确列出 14 处无法修复的物理损伤，包括两处片门抖动的时间码。这类“保留损伤”的处理方式，近年被更多作者电影修复采用，理由是过度修复会改变原片的运动质感。
+            </p>
+
+            <table class="fact-table">
+              <thead>
+                <tr><th>核对项</th><th>《雾港档案》</th><th>《失落的 16 毫米》</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>素材</td><td>1987 原底片</td><td>1972 16mm 原底</td></tr>
+                <tr><td>扫描</td><td>4K / 10bit</td><td>2K / 10bit</td></tr>
+                <tr><td>画幅</td><td>1.66:1</td><td>1.37:1</td></tr>
+                <tr><td>保留损伤</td><td>未列明</td><td>14 处，含 2 处抖动</td></tr>
+                <tr><td>声轨</td><td>光学转 24bit</td><td>光学转 24bit</td></tr>
+              </tbody>
+            </table>
+
+            <h3>“补足片段”要看来源与语境</h3>
+            <p>
+              《雾港档案》修复版比 1987 年公映版多 9 分钟。这 9 分钟来自哪里、为什么当年被剪，比“多 9 分钟”本身更重要。修复说明显示，补足段落来自同一原底的第 3 本与第 6 本，当年因发行方要求缩短片长而剪去。补回后，结尾长镜的动机更完整——但这也意味着修复版与首映版在叙事节奏上有可感知差异。
+            </p>
+            <div class="deep-quote">
+              可引用的判断：修复版的“完整性”与“首映版原貌”并不总是同一件事。看修复版之前，先确认补足段落的来源，比看分辨率数字更有用。
+            </div>
+
+            <h3>信息分层：已公开事实、修复方说明与读者推测</h3>
+            <p>
+              以《黑页》重估文章为例，可以拆成三层。已公开事实是：1994 年上映两周、低成本、拷贝现存状况不明。文章作者的观点是“剪辑节奏接近同期欧洲犯罪片”。读者在 11-03 指出参考片目未列全。三层信息在条目里分开标注，读者可以只采信第一层，也可以顺着第二层去找片目。
+            </p>
+            <ul>
+              <li>已公开事实：上映时间、片长、发行方、现存拷贝数量。</li>
+              <li>当事人或修复方说明：扫描规格、修复范围、补足片段来源。</li>
+              <li>媒体转述与作者观点：重估文章、场刊评论、影评人判断。</li>
+              <li>读者推测：对未公开素材的猜测，标“待核”，不作为定论。</li>
+            </ul>
+
+            <h3>声轨处理常被忽略</h3>
+            <p>
+              《雾港档案》与《失落的 16 毫米》都把光学声轨转为 24bit 数字，保留底噪。这个选择有代价：底噪在安静段落可听见，部分观众会误以为是放映故障。修复方在两部片子的映前说明里都加了提示。判断一条修复信息是否完整，看它有没有提到声轨来源与底噪处理——这一项缺失，往往说明修复说明写得不够细。
+            </p>
+          </div>
+        </section>
+
+        <!-- 6. 体验指南 -->
+        <section id="guide" aria-labelledby="guideTitle">
+          <div class="section-head">
+            <h2 id="guideTitle">观看路径：先看什么，怎么比较</h2>
+            <span class="sub">按投入时间排序</span>
+          </div>
+          <div class="path-steps">
+            <div class="path-step">
+              <span class="step-num" aria-hidden="true"></span>
+              <div><h3>先从 20 分钟以内的短片进入</h3><p>《夜班车》18 分钟、《太阳系边缘》9 分钟。短片的信息密度高，适合先确认自己是否接受实验性处理，再决定要不要投入长片时间。</p></div>
+            </div>
+            <div class="path-step">
+              <span class="step-num" aria-hidden="true"></span>
+              <div><h3>比较同一导演的短片与首作</h3><p>《第一件作品》导演此前拍过 6 部短片。把短片和长片并排看，能看出哪些习惯被保留（固定机位）、哪些被放弃（后半段改跟拍）。这类比较比单看评分更有信息量。</p></div>
+            </div>
+            <div class="path-step">
+              <span class="step-num" aria-hidden="true"></span>
+              <div><h3>修复长片先读修复说明</h3><p>《雾港档案》说明文档第 4 页写了补足片段来源。《失落的 16 毫米》列了 14 处保留损伤。先读说明，再决定看修复版还是找旧版拷贝对照。</p></div>
+            </div>
+            <div class="path-step">
+              <span class="step-num" aria-hidden="true"></span>
+              <div><h3>纪录片看跟拍周期与放映介质</h3><p>《潮间带》跟拍三年，《海岸观察》18 个月。周期越长，素材取舍越关键。放映介质（DCP 还是 16mm 拷贝）决定你能否看到原格式，也影响观感。</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. FAQ -->
+        <section id="faq" aria-labelledby="faqTitle">
+          <div class="section-head">
+            <h2 id="faqTitle">常见问答：版本、介质与展映</h2>
+            <span class="sub">6 个高频问题</span>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>4K 修复版一定比原版清楚吗？</summary>
+              <div class="faq-answer">不一定。清晰度取决于素材与扫描规格，也取决于配光参照。原底保存状况差、扫描色深不足时，4K 数字也可能不如保存良好的 2K。看修复说明里的素材来源与扫描规格，比看分辨率数字可靠。</div>
+            </details>
+            <details class="faq-item">
+              <summary>《雾港档案》多出来的 9 分钟影响剧情吗？</summary>
+              <div class="faq-answer">影响结尾长镜的动机。补足段落来自第 3 本与第 6 本原底，当年因发行方要求缩短片长被剪。补回后人物关系有更完整的交代，但叙事节奏与 1987 年首映版不同。</div>
+            </details>
+            <details class="faq-item">
+              <summary>16mm 拷贝和 DCP 放映观感差在哪？</summary>
+              <div class="faq-answer">16mm 拷贝保留胶片颗粒与片门抖动，放映时有机械噪声；DCP 稳定、干净，但会抹平部分运动质感。《太阳系边缘》目前只有 3 处可放映 16mm 拷贝的场地，DCP 版本尚未制作。</div>
+            </details>
+            <details class="faq-item">
+              <summary>短片竞赛初审看什么？</summary>
+              <div class="faq-answer">初审通常看完整片、导演阐述与素材来源说明。秋季征片 217 部已完成编号，11-12 开始初审，12-01 公布入围。初审不设题材限制，但要求版本信息完整。</div>
+            </details>
+            <details class="faq-item">
+              <summary>纪录片没有旁白会不会看不懂？</summary>
+              <div class="faq-answer">《潮间带》靠潮汐时间表串叙事，没有旁白。跟拍三年，人物关系在劳动场景里展开。习惯旁白解说的观众前 20 分钟可能不适应，但滩涂作业的时间感本身就是叙事线索。</div>
+            </details>
+            <details class="faq-item">
+              <summary>《黑页》的“欧洲犯罪片”说法有争议吗？</summary>
+              <div class="faq-answer">有。文章作者的判断是剪辑节奏接近同期欧洲犯罪片，但参考片目未列全。11-03 有读者指出这一点，条目已加注说明。已公开事实是 1994 年上映两周、低成本，其余属作者观点。</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 8. 用户评论 -->
+        <section id="comments" aria-labelledby="commentsTitle">
+          <div class="section-head">
+            <h2 id="commentsTitle">影迷评论：关于具体条目的零散记录</h2>
+            <span class="sub">14 条</span>
+          </div>
+          <div class="comment-grid">
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">胶片小刘</span><span class="comment-time">11-08 09:12</span></div><p class="comment-text">《雾港档案》补足那段一进去，整个结尾的呼吸就不一样了。1987 版我也看过，剪得急，现在这版长镜更有耐心。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">潮汐观察员</span><span class="comment-time">11-08 10:40</span></div><p class="comment-text">《潮间带》前 20 分钟我差点睡着，后来跟着潮汐表看进去了。没有旁白反而好，解说一多就变成旅游片。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">夜班车乘客</span><span class="comment-time">11-07 22:05</span></div><p class="comment-text">《夜班车》三重曝光那场，第二段曝光是不是有点过？看着有点晕。不过 18 分钟能拍成这样已经可以了。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">南岸放映员</span><span class="comment-time">11-07 15:33</span></div><p class="comment-text">《太阳系边缘》拷贝只剩 3 处能放，昨天问了一处，说机器还在调。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">废片收藏夹</span><span class="comment-time">11-06 20:18</span></div><p class="comment-text">《失落的 16 毫米》保留划痕这个决定我支持。修复到一尘不染，反而像电视电影。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">釜山场刊读者</span><span class="comment-time">11-06 11:02</span></div><p class="comment-text">《第一件作品》后半段改跟拍，我反倒觉得没短片时期稳。固定机位那套才是他的东西。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">黑页重估派</span><span class="comment-time">11-05 19:47</span></div><p class="comment-text">《黑页》那篇重估文章论据不够，说接近欧洲犯罪片，片目列了三部还都是常见的。剪辑节奏这事得拉片才说得清。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">凌晨两点半</span><span class="comment-time">11-04 02:14</span></div><p class="comment-text">便利店灯管那场，光比控制得真好。只有两支定焦，能拍出这个空间感不容易。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">观测站志愿者</span><span class="comment-time">11-03 16:29</span></div><p class="comment-text">《海岸观察》里设备故障那几段，比人物线好看。日志影印本要是能借阅就好了。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">秋季征片投递者</span><span class="comment-time">11-02 21:56</span></div><p class="comment-text">投了 217 部里的其中一部，编号已经收到。初审 11-12 开始，等消息。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">声轨底噪党</span><span class="comment-time">11-01 13:08</span></div><p class="comment-text">光学声轨转 24bit 保留底噪，这个处理对。有些修复把底噪抹了，安静段落像掉了东西。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">片门抖动爱好者</span><span class="comment-time">10-30 18:44</span></div><p class="comment-text">00:41:12 那处抖动其实挺明显，但留着比修掉好。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">排片表收集人</span><span class="comment-time">10-28 09:21</span></div><p class="comment-text">《潮间带》11-21 那场加了映后，得早点去占位。</p></div>
+            <div class="comment-card"><div class="comment-head"><span class="comment-name">路过看看</span><span class="comment-time">10-26 23:37</span></div><p class="comment-text">修复版看得少，倒是被《夜班车》的片名吸引进来的。</p></div>
+          </div>
+        </section>
+
+        <!-- 9. 相关资讯 -->
+        <section id="news" aria-labelledby="newsTitle">
+          <div class="section-head">
+            <h2 id="newsTitle">相关资讯：修复、展映与征片动态</h2>
+            <span class="sub">6 条</span>
+          </div>
+          <div class="news-list">
+            <article class="news-item">
+              <img src="https://picsum.photos/seed/wugangnews/600/400" width="600" height="400" loading="lazy" alt="《雾港档案》修复版发布会现场，主创与修复团队合影">
+              <div class="news-body">
+                <h3 class="news-title">《雾港档案》修复版 11-15 起在三个城市轮映</h3>
+                <div class="news-meta">2026-11-08</div>
+                <p class="news-sum">首站 11-15 开幕，修复团队映前说明 15 分钟，重点讲补足片段来源与声轨处理。轮映城市为三个，每站两场。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img src="https://picsum.photos/seed/chaoxiannews/600/400" width="600" height="400" loading="lazy" alt="《潮间带》导演在滩涂拍摄现场查看监视器">
+              <div class="news-body">
+                <h3 class="news-title">《潮间带》亚洲巡展新增两场，导演确认出席映后</h3>
+                <div class="news-meta">2026-11-08</div>
+                <p class="news-sum">新增 11-21 与 11-23 两场，均在晚间。导演将回答跟拍周期与素材取舍问题，每场映后 30 分钟。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img src="https://picsum.photos/seed/shortfilmnews/600/400" width="600" height="400" loading="lazy" alt="秋季短片竞赛初审工作区，编号表与评审手册">
+              <div class="news-body">
+                <h3 class="news-title">秋季短片竞赛 217 部投稿完成编号，初审 11-12 启动</h3>
+                <div class="news-meta">2026-11-07</div>
+                <p class="news-sum">征片共收 217 部，编号已完成。初审 11-12 开始，12-01 公布入围名单，评审手册要求核查版本信息完整性。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img src="https://picsum.photos/seed/16mmnews/600/400" width="600" height="400" loading="lazy" alt="《失落的16毫米》修复说明文档与胶片盘">
+              <div class="news-body">
+                <h3 class="news-title">《失落的 16 毫米》修复说明补充两处抖动时间码</h3>
+                <div class="news-meta">2026-11-07</div>
+                <p class="news-sum">新增时间码为 00:41:12 与 01:03:27，均属片门抖动，修复方判定不可修。说明文档增至 11 页。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img src="https://picsum.photos/seed/blackpagenews/600/400" width="600" height="400" loading="lazy" alt="《黑页》重估文章页面与读者批注截图">
+              <div class="news-body">
+                <h3 class="news-title">《黑页》重估文章加注：参考片目未列全</h3>
+                <div class="news-meta">2026-11-03</div>
+                <p class="news-sum">读者指出文章仅列 3 部参考片目。加注后条目区分“已公开事实”与“作者观点”，重估作者回应称将补片目。</p>
+              </div>
+            </article>
+            <article class="news-item">
+              <img src="https://picsum.photos/seed/sunnews/600/400" width="600" height="400" loading="lazy" alt="《太阳系边缘》16mm拷贝与放映机检查画面">
+              <div class="news-body">
+                <h3 class="news-title">《太阳系边缘》一处 16mm 拷贝损坏，可放映场地减为 3 处</h3>
+                <div class="news-meta">2026-11-02</div>
+                <p class="news-sum">损坏拷贝 11-01 起停止预约。剩余 3 处场地中，一处设备仍在调试，预计 11-10 恢复。</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 10. 相关推荐 -->
+        <section id="related" aria-labelledby="relatedTitle">
+          <div class="section-head">
+            <h2 id="relatedTitle">相关推荐：按线索延伸</h2>
+            <span class="sub">8 个方向</span>
+          </div>
+          <div class="rec-tag-wrap">
+            <a class="rec-tag" href="/#picks">1980 年代都市黑色片修复</a>
+            <a class="rec-tag" href="/#picks">无旁白观察式纪录片</a>
+            <a class="rec-tag" href="/#picks">单场景短片</a>
+            <a class="rec-tag" href="/#picks">16mm 直接曝光实验</a>
+            <a class="rec-tag" href="/#picks">影展首作导演短片序列</a>
+            <a class="rec-tag" href="/#picks">低成本类型片重估</a>
+            <a class="rec-tag" href="/#picks">光学声轨转数字对照</a>
+            <a class="rec-tag" href="/#picks">片门抖动保留案例</a>
+          </div>
+        </section>
+
+        <!-- 11. 作品投稿 / 互动 -->
+        <section id="contribute" aria-labelledby="contributeTitle">
+          <div class="section-head">
+            <h2 id="contributeTitle">作品投稿：秋季短片征片与条目补正</h2>
+            <span class="sub">互动栏目</span>
+          </div>
+          <div class="overview-panel">
+            <p>
+              秋季短片征片已收 217 部，编号完成，初审 11-12 开始。投稿要求：片长 40 分钟以内、版本信息完整（素材来源、扫描规格或拍摄介质）、附导演阐述 300 字以内。初审不设题材限制。
+            </p>
+            <p>
+              条目补正通道同时开放。如果你发现修复说明、放映介质或时间码有误，可提交具体页码与出处。11-07 已有读者补正《失落的 16 毫米》两处抖动时间码，11-08 已并入条目。
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- 右辅助栏 -->
+      <aside class="aux-side" aria-label="辅助栏">
+        <div class="side-panel">
+          <h2>本周条目热度</h2>
+          <div class="rank-list">
+            <div class="rank-item"><span class="rk">1</span><span class="rk-name">《雾港档案》4K 修复版</span><span class="rk-hot">1,204</span></div>
+            <div class="rank-item"><span class="rk">2</span><span class="rk-name">《潮间带》</span><span class="rk-hot">987</span></div>
+            <div class="rank-item"><span class="rk">3</span><span class="rk-name">《夜班车》</span><span class="rk-hot">865</span></div>
+            <div class="rank-item"><span class="rk">4</span><span class="rk-name">《失落的 16 毫米》</span><span class="rk-hot">712</span></div>
+            <div class="rank-item"><span class="rk">5</span><span class="rk-name">《第一件作品》</span><span class="rk-hot">640</span></div>
+            <div class="rank-item"><span class="rk">6</span><span class="rk-name">《黑页》</span><span class="rk-hot">598</span></div>
+            <div class="rank-item"><span class="rk">7</span><span class="rk-name">《太阳系边缘》</span><span class="rk-hot">501</span></div>
+            <div class="rank-item"><span class="rk">8</span><span class="rk-name">《海岸观察》</span><span class="rk-hot">466</span></div>
+          </div>
+        </div>
+
+        <div class="side-panel">
+          <h2>版本核对清单</h2>
+          <div class="rank-list">
+            <div class="rank-item"><span class="rk">·</span><span class="rk-name">素材来源是否写明</span></div>
+            <div class="rank-item"><span class="rk">·</span><span class="rk-name">扫描分辨率与色深</span></div>
+            <div class="rank-item"><span class="rk">·</span><span class="rk-name">补足片段来源</span></div>
+            <div class="rank-item"><span class="rk">·</span><span class="rk-name">声轨处理方式</span></div>
+            <div class="rank-item"><span class="rk">·</span><span class="rk-name">放映介质与场地</span></div>
+          </div>
+        </div>
+
+        <div class="side-cta">
+          <h2>短片征片进行中</h2>
+          <p>217 部已完成编号，初审 11-12 开始。片长 40 分钟以内，附版本信息与导演阐述。</p>
+          <a class="cta-btn" href="/#contribute">查看投稿要求</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ============ 页尾 ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="/#top">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+                <path d="M4 17l5-8 4 6 3-4 4 6H4z" fill="#d9a441"/>
+                <circle cx="17.2" cy="7" r="2.2" fill="#e8e3d9"/>
+              </svg>
+            </span>
+            <span class="brand-text">先锋你懂的一区</span>
+          </a>
+          <p class="footer-desc">
+            条目覆盖 1972—2026 年的修复长片、实验短片、影展首作与作者纪录片，含放映介质与修复说明字段。每周三、周日各更新一次，新增条目随修复与展映进度校正。
+          </p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h3>内容入口</h3>
+            <a href="/#overview">领域速览</a>
+            <a href="/#picks">精选条目</a>
+            <a href="/#updates">最新更新</a>
+            <a href="/#categories">分类入口</a>
+          </div>
+          <div class="footer-col">
+            <h3>阅读辅助</h3>
+            <a href="/#deep">深度解析</a>
+            <a href="/#guide">观看路径</a>
+            <a href="/#faq">常见问答</a>
+            <a href="/#news">相关资讯</a>
+          </div>
+          <div class="footer-col">
+            <h3>互动</h3>
+            <a href="/#comments">影迷评论</a>
+            <a href="/#related">相关推荐</a>
+            <a href="/#contribute">作品投稿</a>
+            <a href="/#top">回到顶部</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>条目与评论为示例内容，修复与展映信息以实际发布为准。最近更新：2026-11-08（《雾港档案》补足片段时长更正）。</span>
+        <span>© 2026 先锋你懂的一区</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* ---------- 移动端菜单 ---------- */
+      var menuToggle = document.getElementById('menuToggle');
+      var mainNav = document.getElementById('mainNav');
+      var navOverlay = document.getElementById('navOverlay');
+
+      function closeMenu() {
+        if (!mainNav.classList.contains('open')) return;
+        mainNav.classList.remove('open');
+        navOverlay.classList.remove('show');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '打开菜单');
+        document.body.style.overflow = '';
+      }
+
+      function openMenu() {
+        mainNav.classList.add('open');
+        navOverlay.classList.add('show');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.setAttribute('aria-label', '关闭菜单');
+        document.body.style.overflow = 'hidden';
+      }
+
+      if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+          if (mainNav.classList.contains('open')) closeMenu();
+          else openMenu();
+        });
+      }
+
+      if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+
+      mainNav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeMenu();
+      });
+
+      /* ---------- 回到顶部 ---------- */
+      var backTop = document.getElementById('backTop');
+      var ticking = false;
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          if (window.scrollY > window.innerHeight * 0.8) {
+            backTop.classList.add('show');
+          } else {
+            backTop.classList.remove('show');
+          }
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      backTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* ---------- 搜索筛选（条目卡片） ---------- */
+      var searchInput = document.getElementById('searchInput');
+      var searchBtn = document.getElementById('searchBtn');
+      var pickCards = Array.prototype.slice.call(document.querySelectorAll('.pick-card'));
+      var searchEmpty = document.getElementById('searchEmpty');
+
+      function runSearch() {
+        if (!searchInput) return;
+        var q = searchInput.value.trim().toLowerCase();
+        var visible = 0;
+        pickCards.forEach(function (card) {
+          var text = card.textContent.toLowerCase();
+          var match = !q || text.indexOf(q) !== -1;
+          card.classList.toggle('is-hidden', !match);
+          if (match) visible++;
+        });
+        if (q && visible === 0) {
+          searchEmpty.classList.add('show');
+        } else {
+          searchEmpty.classList.remove('show');
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', runSearch);
+        searchInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') { e.preventDefault(); runSearch(); }
+        });
+      }
+      if (searchBtn) searchBtn.addEventListener('click', runSearch);
+
+      /* ---------- 频道高亮 ---------- */
+      var channelLinks = Array.prototype.slice.call(document.querySelectorAll('.channel-list a'));
+      var sections = channelLinks.map(function (a) {
+        var id = a.getAttribute('href').replace('/#', '');
+        return document.getElementById(id);
+      });
+
+      if ('IntersectionObserver' in window && sections.some(Boolean)) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var idx = sections.indexOf(entry.target);
+              if (idx > -1) {
+                channelLinks.forEach(function (l) { l.classList.remove('is-active'); });
+                channelLinks[idx].classList.add('is-active');
+              }
+            }
+          });
+        }, {
+          rootMargin: '-45% 0px -50% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(function (sec) {
+          if (sec) observer.observe(sec);
+        });
+      }
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "先锋你懂的一区",
+    "description": "聚合冷门修复长片、作者短片、影展首作、纪录片与类型片重估条目，提供版本、介质与展映信息。",
+    "inLanguage": "zh-CN"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "4K 修复版一定比原版清楚吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不一定。清晰度取决于素材与扫描规格，也取决于配光参照。原底保存状况差、扫描色深不足时，4K 数字也可能不如保存良好的 2K。看修复说明里的素材来源与扫描规格，比看分辨率数字可靠。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "《雾港档案》多出来的 9 分钟影响剧情吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "影响结尾长镜的动机。补足段落来自第 3 本与第 6 本原底，当年因发行方要求缩短片长被剪。补回后人物关系有更完整的交代，但叙事节奏与 1987 年首映版不同。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "16mm 拷贝和 DCP 放映观感差在哪？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "16mm 拷贝保留胶片颗粒与片门抖动，放映时有机械噪声；DCP 稳定、干净，但会抹平部分运动质感。《太阳系边缘》目前只有 3 处可放映 16mm 拷贝的场地，DCP 版本尚未制作。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "短片竞赛初审看什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "初审通常看完整片、导演阐述与素材来源说明。秋季征片 217 部已完成编号，11-12 开始初审，12-01 公布入围。初审不设题材限制，但要求版本信息完整。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "纪录片没有旁白会不会看不懂？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "《潮间带》靠潮汐时间表串叙事，没有旁白。跟拍三年，人物关系在劳动场景里展开。习惯旁白解说的观众前 20 分钟可能不适应，但滩涂作业的时间感本身就是叙事线索。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "《黑页》的“欧洲犯罪片”说法有争议吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "有。文章作者的判断是剪辑节奏接近同期欧洲犯罪片，但参考片目未列全。11-03 有读者指出这一点，条目已加注说明。已公开事实是 1994 年上映两周、低成本，其余属作者观点。"
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+                                                                            </html>
