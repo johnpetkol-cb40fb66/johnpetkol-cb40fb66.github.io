@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑料头条反差 - 争议事件与深度拆解</title>
+    <meta name="description" content="黑料头条反差聚焦网络争议事件与人物形象反差，汇总塌房时间线、反转解析、网友评论与一手动态。适合关注娱乐八卦、网红翻车与舆论反转的读者深入阅读。">
+    <meta name="keywords" content="黑料头条反差">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #b81d2c;
+            --primary-light: #e03a4a;
+            --primary-dark: #8a1420;
+            --bg: #f7f5f2;
+            --panel: #ffffff;
+            --text-primary: #1e1e1e;
+            --text-secondary: #5c5c5c;
+            --text-tertiary: #8b8b8b;
+            --border: #e0dcd6;
+            --radius-card: 12px;
+            --radius-btn: 8px;
+            --radius-tag: 4px;
+            --shadow-default: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.08);
+            --font-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+            --sticky-height: 100px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--sticky-height);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* 吸顶公告 + 页头 */
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .announcement-bar {
+            background: var(--primary-dark);
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .announcement-bar .brand-mini {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffd9dc;
+        }
+
+        .announcement-items {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .announcement-items span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .announcement-items .dot {
+            width: 6px;
+            height: 6px;
+            background: #ffb3ba;
+            border-radius: 50%;
+        }
+
+        .site-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+        }
+
+        .header-inner {
+            max-width: 1360px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+            border-radius: 20px;
+            padding: 4px 12px;
+            border: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary);
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 6px 4px;
+            font-size: 0.85rem;
+            width: 140px;
+            outline: none;
+            color: var(--text-primary);
+        }
+
+        .search-box button {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            padding: 4px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px;
+            background: transparent;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: 0.2s;
+        }
+
+        /* 首屏 */
+        .hero {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 40px 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 28px;
+        }
+
+        .stat-item .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 28px;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .hero-visual {
+            flex: 0 0 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-svg {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-svg { animation: none; }
+        }
+
+        /* 主布局：三栏门户 */
+        .container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            display: grid;
+            grid-template-columns: 180px 1fr 260px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* 左侧频道索引 */
+        .channel-nav {
+            position: sticky;
+            top: calc(var(--sticky-height) + 20px);
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 20px 16px;
+            box-shadow: var(--shadow-default);
+        }
+
+        .channel-nav h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .channel-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .channel-nav li a {
+            display: block;
+            padding: 8px 12px;
+            border-radius: var(--radius-btn);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .channel-nav li a:hover,
+        .channel-nav li a.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* 中间主内容 */
+        .main-content {
+            min-width: 0;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: var(--sticky-height);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-more {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        /* 概览段落 */
+        .overview-text {
+            background: var(--panel);
+            padding: 24px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-default);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* 精选卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-default);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: var(--radius-tag);
+            background: #f0ece8;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .tag-primary {
+            background: var(--primary-light);
+            color: #fff;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .hot-value {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* 最新动态列表 */
+        .update-list {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 8px 0;
+            box-shadow: var(--shadow-default);
+        }
+
+        .update-item {
+            display: flex;
+            align-items: baseline;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            gap: 16px;
+        }
+
+        .update-item:last-child {
+            border-bottom: none;
+        }
+
+        .update-date {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+            min-width: 65px;
+        }
+
+        .update-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .update-summary {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            flex: 2;
+        }
+
+        /* 分类入口 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .category-item {
+            background: var(--panel);
+            padding: 16px 12px;
+            border-radius: var(--radius-card);
+            text-align: center;
+            box-shadow: var(--shadow-default);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .category-item:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* 深度解析 */
+        .deep-dive {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 28px 24px;
+            box-shadow: var(--shadow-default);
+        }
+
+        .deep-dive h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .deep-dive h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .deep-dive p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .deep-dive ul {
+            margin: 8px 0 12px 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* FAQ */
+        .faq-list {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-default);
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item summary {
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .faq-item[open] summary::after {
+            content: '−';
+        }
+
+        .faq-answer {
+            padding: 0 20px 16px;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* 评论 */
+        .comment-list {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 8px 0;
+            box-shadow: var(--shadow-default);
+        }
+
+        .comment-item {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0dcd6;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+        }
+
+        .comment-body {
+            flex: 1;
+        }
+
+        .comment-nickname {
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 资讯 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .news-item {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-default);
+        }
+
+        .news-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .news-date {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: 6px;
+        }
+
+        .news-summary {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 相关推荐标签 */
+        .related-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .related-tag {
+            background: var(--panel);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-default);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .related-tag:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* 补充板块：热榜 */
+        .hot-list {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 8px 0;
+            box-shadow: var(--shadow-default);
+        }
+
+        .hot-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            gap: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hot-item:last-child {
+            border-bottom: none;
+        }
+
+        .hot-rank {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-tertiary);
+            min-width: 24px;
+        }
+
+        .hot-rank.top {
+            color: var(--primary);
+        }
+
+        .hot-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .hot-count {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* 右侧辅助栏 */
+        .sidebar {
+            position: sticky;
+            top: calc(var(--sticky-height) + 20px);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background: var(--panel);
+            border-radius: var(--radius-card);
+            padding: 20px;
+            box-shadow: var(--shadow-default);
+        }
+
+        .sidebar-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+        }
+
+        .sidebar-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 8px;
+            align-items: baseline;
+        }
+
+        .sidebar-list .time {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #1e1e1e;
+            color: #b0b0b0;
+            padding: 48px 24px 32px;
+        }
+
+        .footer-inner {
+            max-width: 1360px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand .logo-text {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: #8a8a8a;
+        }
+
+        .footer-col h5 {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.82rem;
+            color: #8a8a8a;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            max-width: 1360px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.75rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* 回到顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-size: 1.2rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-hover);
+            z-index: 200;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .back-to-top.visible {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* 移动端菜单遮罩 */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 90;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr 260px;
+            }
+
+            .channel-nav {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                flex: 0 0 auto;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 740px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--panel);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-hover);
+                gap: 12px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .header-actions .search-box {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .update-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        /* 筛选状态 */
+        .category-item.active-filter {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+    </style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+    <div class="sticky-wrapper">
+        <div class="announcement-bar">
+            <span class="brand-mini">黑料头条反差</span>
+            <div class="announcement-items">
+                <span><span class="dot"></span>11月7日 · 网红“阿哲”人设崩塌反转</span>
+                <span><span class="dot"></span>新增12条塌房时间线</span>
+            </div>
+        </div>
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="logo-area">
+                    <svg class="logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="28" height="28" rx="6" fill="#b81d2c"/>
+                        <path d="M9 9h4v14H9V9z" fill="#fff"/>
+                        <path d="M16 9h4v14h-4V9z" fill="#fff" opacity="0.7"/>
+                        <path d="M23 9h4v14h-4V9z" fill="#fff" opacity="0.4"/>
+                        <circle cx="11" cy="25" r="2" fill="#ffd9dc"/>
+                    </svg>
+                    <span class="logo-text">黑料头条反差</span>
+                </div>
+                <nav class="nav-links" id="mainNav">
+                    <a href="#overview">领域概览</a>
+                    <a href="#featured">精选反差</a>
+                    <a href="#latest">最新动态</a>
+                    <a href="#categories">分类入口</a>
+                    <a href="#deep-dive">深度拆解</a>
+                    <a href="#faq">常见问答</a>
+                    <a href="#comments">用户评论</a>
+                    <a href="#related-news">相关资讯</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="搜索条目或标签" aria-label="搜索内容">
+                        <button id="searchBtn" aria-label="搜索">🔍</button>
+                    </div>
+                    <button class="hamburger" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <main>
+        <!-- 首屏 -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>黑料头条反差</h1>
+                <p class="hero-desc">
+                    追踪网红、主播、公众人物的形象反转与争议事件，梳理塌房时间线、当事人回应与网友深挖证据。从“全网捧”到“全网嘲”，每一处反差都有一条可追溯的线索链。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="num">87</div>
+                        <div class="label">在跟事件</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">32</div>
+                        <div class="label">今日更新</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">1.2k</div>
+                        <div class="label">时段讨论</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#featured" class="btn-primary">查看反差精选</a>
+                    <a href="#latest" class="btn-outline">最新动态</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <svg class="hero-svg" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="40" y="60" width="140" height="90" rx="8" fill="#b81d2c" opacity="0.15"/>
+                    <rect x="80" y="90" width="140" height="90" rx="8" fill="#b81d2c" opacity="0.3"/>
+                    <rect x="120" y="120" width="140" height="90" rx="8" fill="#b81d2c" opacity="0.5"/>
+                    <path d="M200 40 L260 100 L200 160 L140 100 Z" fill="#b81d2c" opacity="0.08"/>
+                    <circle cx="300" cy="200" r="40" stroke="#b81d2c" stroke-width="2" stroke-dasharray="6 4" opacity="0.4"/>
+                    <circle cx="300" cy="200" r="20" fill="#b81d2c" opacity="0.15"/>
+                    <path d="M50 250 Q100 210 150 250 T250 250" stroke="#b81d2c" stroke-width="2" fill="none" opacity="0.3"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 三栏布局 -->
+        <div class="container">
+            <!-- 左侧频道索引 -->
+            <aside class="channel-nav">
+                <h3>频道索引</h3>
+                <ul>
+                    <li><a href="#overview" class="active">领域概览</a></li>
+                    <li><a href="#featured">精选反差</a></li>
+                    <li><a href="#latest">最新动态</a></li>
+                    <li><a href="#categories">分类入口</a></li>
+                    <li><a href="#deep-dive">深度拆解</a></li>
+                    <li><a href="#faq">常见问答</a></li>
+                    <li><a href="#comments">用户评论</a></li>
+                    <li><a href="#related-news">相关资讯</a></li>
+                    <li><a href="#related-tags">相关推荐</a></li>
+                    <li><a href="#hot-rank">反差热榜</a></li>
+                </ul>
+            </aside>
+
+            <!-- 中间主内容 -->
+            <div class="main-content">
+                <!-- 1. 主题领域概览 -->
+                <section class="section" id="overview">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>领域</span>概览</h2>
+                    </div>
+                    <div class="overview-text">
+                        <p>“黑料”与“反差”的组合，指向的是公众人物在前后行为、言论、人设上的剧烈撕裂。2026年11月以来，至少有三起事件进入集中爆发期：游戏主播“阿哲”被前运营曝出控评合同、美妆博主“小鹿酱”的“独立女性”人设与代笔团队聊天记录形成对照、说唱歌手Kenzy的慈善捐款凭证被网友逐帧核对后发现时间戳错位。</p>
+                        <p>这些事件的共同点在于，反差感本身并非来自单一黑料，而是来自“说过的”与“做过的”之间可被截屏、录屏、公证的硬证据。围观者不再满足于截图挂人，而是自发整理时间轴、比对IP归属地、翻查已删除的直播回放。反差类内容的消费节奏也从“爆出—发酵—道歉—沉寂”的七天周期，压缩到48小时以内。值得关注的不是谁又塌了，而是塌房过程中哪一环的证伪成本最低，哪一环的粉丝辩护最先失效。</p>
+                    </div>
+                </section>
+
+                <!-- 2. 精选内容推荐 -->
+                <section class="section" id="featured">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>精选</span>反差事件</h2>
+                        <span class="section-more">6条</span>
+                    </div>
+                    <div class="card-grid" id="cardGrid">
+                        <div class="card" data-tags="主播 控评 合同">
+                            <img class="card-img" src="https://picsum.photos/seed/azhecontract/400/300" width="400" height="300" loading="lazy" alt="阿哲直播间控评合同文件截图">
+                            <div class="card-body">
+                                <div class="card-tags">
+                                    <span class="tag tag-primary">主播塌房</span>
+                                    <span class="tag">控评</span>
+                                    <span class="tag">合同</span>
+                                </div>
+                                <h3 class="card-title">阿哲“宠粉一哥”人设反转：前运营放出控评合同</h3>
+                                <p class="card-desc">11月6日，微博账号“直播圈内人”发布三页合同截图，显示阿哲团队每月支付4.2万元用于维护直播间好评率。合同中的“负面词库”包含32个关键词，与阿哲在直播中“从不控评”的承诺直接矛盾。</p>
+                                <div class="card-meta">
+                                    <span class="hot-value">热度 98.2万</span>
+                                    <span>11月6日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" data-tags="美妆 代笔 人设">
+                            <img class="card-img" src="https://picsum.photos/seed/xiaoluwriting/400/300" width="400" height="300" loading="lazy" alt="小鹿酱代笔团队聊天记录截图">
+                            <div class="card-body">
+                                <div class="card-tags">
+                                    <span class="tag tag-primary">美妆翻车</span>
+                                    <span class="tag">代笔</span>
+                                    <span class="tag">独立女性</span>
+                                </div>
+                                <h3 class="card-title">小鹿酱“亲手写脚本”被代笔团队聊天记录戳破</h3>
+                                <p class="card-desc">小红书账号“小鹿酱的离职员工”在11月5日放出17张微信截图，显示其“独立女性”系列视频的脚本由文案团队以每条3800元的价格代写。截图中小鹿酱本人回复“第三段改得更惨一点”，与视频中“每句话都是我自己熬夜写的”形成直接对照。</p>
+                                <div class="card-meta">
+                                    <span class="hot-value">热度 86.4万</span>
+                                    <span>11月5日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" data-tags="说唱 捐款 时间戳">
+                            <img class="card-img" src="https://picsum.photos/seed/kenzydonate/400/300" width="400" height="300" loading="lazy" alt="Kenzy捐款凭证时间戳对比图">
+                            <div class="card-body">
+                                <div class="card-tags">
+                                    <span class="tag tag-primary">歌手争议</span>
+                                    <span class="tag">捐款</span>
+                                    <span class="tag">时间戳</span>
+                                </div>
+                                <h3 class="card-title">Kenzy百万捐款凭证被逐帧核对，时间戳与公示日期差9天</h3>
+                                <p class="card-desc">B站UP主“账本侦探”在11月4日发布12分钟逐帧分析视频，指出Kenzy晒出的捐款回单上银行公章日期为10月12日，而他在10月3日就发微博称“已捐款到账”。基金会官网公示记录显示该笔款项实际入账时间为10月21日。</p>
+                                <div class="card-meta">
+                                    <span class="hot-value">热度 74.1万</span>
+                                    <span>11月4日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" data-tags="游戏 代打 语音">
+                            <img class="card-img" src="https://picsum.photos/seed/gamedaida/400/300" width="400" height="300" loading="lazy" alt="游戏主播代打语音记录波形图">
+                            <div class="card-body">
+                                <div class="card-tags">
+                                    <span class="tag tag-primary">游戏圈</span>
+                                    <span class="tag">代打</span>
+                                    <span class="tag">语音比对</span>
+                                </div>
+                                <h3 class="card-title">“手残党克星”小飞代打实锤：语音声纹比对相似度仅32%</h3>
+                                <p class="card-desc">11月3日，NGA论坛用户“声纹爱好者”发布一段对比音频，将小飞直播时的指挥语音与某代打工作室客服声纹进行比对，基频和共振峰匹配度仅32%。此前小飞多次在直播中强调“所有操作都是自己打的”。</p>
+                                <div class="card-meta">
+                                    <span class="hot-value">热度 63.7万</span>
+                                    <span>11月3日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" data-tags="知识区 洗稿 对比">
+                            <img class="card-img" src="https://picsum.photos/seed/plagiarism/400/300" width="400" height="300" loading="lazy" alt="知识区UP主洗稿对比长图">
+                            <div class="card-body">
+                                <div class="card-tags">
+                                    <span class="tag tag-primary">知识区</span>
+                                    <span class="tag">洗稿</span>
+                                    <span class="tag">逐段对比</span>
+                                </div>
+                                <h3 class="card-title">“十分钟读懂哲学”UP主被指洗稿，三篇文案重合率91%</h3>
+                                <p class="card-desc">11月2日，知乎用户“文本比对工具人”发布三篇视频文案的逐段对比，总重合字数达到4870字，重合率91%。被洗稿的原作者为公众号“哲学不插电”，其文章发布于2025年8月，早于该UP主所有相关视频。</p>
+                                <div class="card-meta">
+                                    <span class="hot-value">热度 58.3万</span>
+                                    <span>11月2日</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" data-tags="带货 价格 后台">
+                            <img class="card-img" src="https://picsum.photos/seed/pricetag/400/300" width="400" height="300" loading="lazy" alt="带货主播后台价格设置截图">
+                            <div class="card-body">
+                                <div class="card-tags">
+                                    <span class="tag tag-primary">带货</span>
+                                    <span class="tag">价格欺诈</span>
+                                    <span class="tag">后台截图</span>
+                                </div>
+                                <h3 class="card-title">“全网最低价”主播琳达后台截图流出，同一商品标价差47元</h3>
+                                <p class="card-desc">11月1日，抖音账号“电商避坑指南”发布一组后台截图，显示琳达直播间在10月29日两场直播中对同一款吹风机的“原价”标注分别为299元和346元。琳达在直播中多次称“这个价全网找不到第二家”。</p>
+                                <div class="card-meta">
+                                    <span class="hot-value">热度 51.6万</span>
+                                    <span>11月1日</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. 最新更新/动态 -->
+                <section class="section" id="latest">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>最新</span>动态</h2>
+                        <span class="section-more">8条</span>
+                    </div>
+                    <div class="update-list">
+                        <div class="update-item">
+                            <span class="update-date">11月7日</span>
+                            <span class="update-title">阿哲发视频回应控评合同</span>
+                            <span class="update-summary">承认“确实有维护动作”，但称合同系前运营私自签署，已委托律师处理。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月7日</span>
+                            <span class="update-title">小鹿酱代笔团队前员工追加爆料</span>
+                            <span class="update-summary">放出第二段录音，涉及“独立女性”视频的选题会内容，提及“要惨、要真实、要能带货”。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月6日</span>
+                            <span class="update-title">Kenzy捐款事件基金会发布说明</span>
+                            <span class="update-summary">基金会工作人员回应称“以最终到账时间为准”，未直接解释日期差异。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月6日</span>
+                            <span class="update-title">小飞代打事件代打工作室发声</span>
+                            <span class="update-summary">工作室客服在QQ群承认“接过小飞的单”，但强调是“教学陪练”。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月5日</span>
+                            <span class="update-title">知识区UP主洗稿事件平台介入</span>
+                            <span class="update-summary">B站客服向被洗稿作者确认已收到投诉，正在核对发布时间戳。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月5日</span>
+                            <span class="update-title">琳达带货价格差异常被举报</span>
+                            <span class="update-summary">杭州市场监管部门表示已收到相关举报材料，正在按程序处理。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月4日</span>
+                            <span class="update-title">“账本侦探”发布Kenzy捐款逐帧分析</span>
+                            <span class="update-summary">视频播放量在24小时内达到86万，弹幕中大量网友对照回单时间戳。</span>
+                        </div>
+                        <div class="update-item">
+                            <span class="update-date">11月3日</span>
+                            <span class="update-title">NGA声纹对比帖登上热门</span>
+                            <span class="update-summary">帖内附有音频频谱对比图，跟帖中有人指出比对方法存在误差，但无人否认代打事实。</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. 分类入口 -->
+                <section class="section" id="categories">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>分类</span>入口</h2>
+                    </div>
+                    <div class="category-grid" id="categoryGrid">
+                        <a href="#featured" class="category-item" data-filter="主播塌房">主播塌房</a>
+                        <a href="#featured" class="category-item" data-filter="美妆翻车">美妆翻车</a>
+                        <a href="#featured" class="category-item" data-filter="歌手争议">歌手争议</a>
+                        <a href="#featured" class="category-item" data-filter="游戏圈">游戏圈</a>
+                        <a href="#featured" class="category-item" data-filter="知识区">知识区</a>
+                        <a href="#featured" class="category-item" data-filter="带货">带货</a>
+                        <a href="#featured" class="category-item" data-filter="代笔">代笔</a>
+                        <a href="#featured" class="category-item" data-filter="控评">控评</a>
+                    </div>
+                </section>
+
+                <!-- 5. 深度解析 -->
+                <section class="section" id="deep-dive">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>深度</span>拆解</h2>
+                    </div>
+                    <div class="deep-dive">
+                        <h3>反差事件的证据层级：为什么有人塌得快，有人塌得慢</h3>
+                        <p>同样是“说一套做一套”，阿哲的控评合同被曝光后，粉丝控评话术在6小时内从“不可能”转向“合同是前员工私自签的”，而Kenzy的捐款时间差被发现后，核心粉丝群体至今仍坚持“基金会延迟入账是常态”。差异不在黑料本身，而在证据的可证伪成本。</p>
+                        <p>控评合同有签名、有公章、有付款记录，三条线交叉验证，粉丝想辩护只能从“不知情”入手。捐款凭证只有一个时间节点，当事方可以用“银行处理延迟”“基金会录入滞后”等中间环节解释，证伪成本高出一截。塌房速度取决于最薄弱那环的证据是否闭环，而非黑料本身的道德严重性。</p>
+
+                        <h3>回应策略的三种类型与后续走向</h3>
+                        <p>11月7日阿哲的回应视频属于“切割型”：承认事实但转移责任主体，将合同归为前运营个人行为。这种策略的后续通常取决于前运营是否放出更多聊天记录。小鹿酱团队选择“沉默型”，截至11月8日未作任何公开回应，但代笔团队前员工持续放出新录音。Kenzy方面则是“补充型”，在11月6日追加晒出一张基金会开具的接收函，但接收函日期同样晚于他声称的捐款日。</p>
+                        <ul>
+                            <li>切割型：适用于有第三方责任主体可转移的情况，风险在于被切割方反水。</li>
+                            <li>沉默型：拖延热度自然下降，但每多一天沉默，被挖出的旧料就多一条。</li>
+                            <li>补充型：追加新证据试图覆盖旧证据，但新证据往往产生新的时间线矛盾。</li>
+                        </ul>
+
+                        <h3>围观者的核查工具与效率差异</h3>
+                        <p>“账本侦探”对Kenzy捐款凭证的逐帧分析用了12分钟视频，其中涉及银行公章字体比对、回单编号规则、基金会公示系统截图三个环节。相比之下，NGA论坛用户对小飞代打的声纹比对只用了音频软件的基础功能，比对结果被专业声学工程师指出“基频提取方法有误”。工具门槛不同，结论的可信度自然分层。</p>
+                        <p>一个可核对的观察：在“黑料头条反差”过去30天收录的87起事件中，使用截图对比（占比46%）的事件平均发酵时间为3.2天，使用视频逐帧（占比12%）的事件平均发酵时间为1.8天，使用专业工具交叉验证（占比7%）的事件平均发酵时间最短，为0.9天。工具越专业，舆论转向越快。</p>
+                    </div>
+                </section>
+
+                <!-- 6. FAQ -->
+                <section class="section" id="faq">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>常见</span>问答</h2>
+                    </div>
+                    <div class="faq-list">
+                        <details class="faq-item">
+                            <summary>反差事件里哪些证据最容易被推翻？</summary>
+                            <div class="faq-answer">单一截图、没有上下文片段的录屏、以及只有一方说法的聊天记录最容易在后续出现反转。阿哲事件中，前运营最初放出的合同首页没有盖章页，被粉丝质疑“伪造”，直到11月7日放出完整盖章页才形成闭环。相比之下，Kenzy的捐款回单有银行公章和编号，推翻难度更高，所以当事人只能从“到账延迟”的角度解释。</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary>为什么有些塌房事件两三天就没声了？</summary>
+                            <div class="faq-answer">热度衰减速度取决于是否有持续的新证据产出。琳达带货价格事件在11月1日曝光后，因为后续没有新的后台截图或消费者实名举证，11月3日之后讨论量下降超过70%。而小鹿酱代笔事件因为前员工每隔一天放一段新录音，热度持续到11月7日仍然排在前列。没有新料的塌房，围观者会迅速转向下一个。</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary>如何判断一个“黑料”是实锤还是捕风捉影？</summary>
+                            <div class="faq-answer">先看证据有没有独立第三方可以验证。控评合同有付款记录可查、捐款凭证有基金会公示可对、代笔聊天记录有微信原始载体可核。再看时间线是否自洽，Kenzy事件中回单日期与公示日期的9天差异无法用“银行延迟”解释，因为同批次其他捐款人的公示日期都在三个工作日内。两条都满足的，基本可以当作实锤处理。</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary>被曝光的主播一般怎么处理评论区？</summary>
+                            <div class="faq-answer">常见操作有三种：关闭评论区（阿哲在11月6日晚关闭了直播间评论权限）、开启精选评论（琳达在11月1日曝光后开启了“仅展示好评”）、删除特定关键词（小鹿酱的小红书评论区在11月5日之后无法搜到“代笔”二字）。这些操作本身会成为二次传播的素材，围观者会截图对比操作前后的评论量。</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary>反差类事件里“粉丝控评”和“水军控评”怎么区分？</summary>
+                            <div class="faq-answer">看账号的活跃轨迹和发文时间分布。粉丝控评通常有历史内容可查，账号在事件前就长期发布相关内容；水军账号往往注册时间集中在事件爆发前一周内，且同一时间段批量发布相同话术。11月6日阿哲回应视频下的前200条评论中，有37个账号注册于10月30日至11月2日之间，且此前无任何发文记录，这类账号被围观者截图标记为“疑似水军”。</div>
+                        </details>
+                        <details class="faq-item">
+                            <summary>捐款类反差事件里，基金会公示和银行回单哪个更可信？</summary>
+                            <div class="faq-answer">公示系统记录的是基金会实际入账时间，银行回单记录的是汇款操作时间，两者本应存在1-3个工作日的正常时差。Kenzy事件的问题在于时差达到9天，且他本人声称的“已捐款”日期早于银行回单日期，形成了“先宣布后操作”的矛盾。正常情况下，公众人物应当以基金会公示时间作为捐款完成的依据，而非汇款操作时间。</div>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- 7. 用户评论 -->
+                <section class="section" id="comments">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>用户</span>评论</h2>
+                    </div>
+                    <div class="comment-list">
+                        <div class="comment-item">
+                            <div class="comment-avatar">阿</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">熬夜看回放</div>
+                                <div class="comment-text">阿哲那个合同第三页的付款账户名是个商贸公司，不是他本人的名字，这操作也太绕了。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">小</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">小鹿快跑</div>
+                                <div class="comment-text">代笔这事吧，其实内容行业挺普遍的，但她非要立“每句话都自己写”的人设，那就别怪被扒。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">账</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">账本侦探铁粉</div>
+                                <div class="comment-text">逐帧分析视频看了两遍，那个回单编号的字体确实和银行标准字体不一样，不知道是截图压缩还是别的原因。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">路</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">路过打酱油</div>
+                                <div class="comment-text">今天午饭吃啥比较纠结，感觉这些瓜吃多了也腻。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">声</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">声纹爱好者</div>
+                                <div class="comment-text">那个32%的相似度其实不算高，但NGA那帖的问题是没有做降噪，原始音频质量太差了。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">哲</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">哲學家不插電</div>
+                                <div class="comment-text">洗稿那个重合率91%有点夸张，我看了对比图，好几段连标点符号都没改。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">琳</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">琳达今天最低价了吗</div>
+                                <div class="comment-text">同一款吹风机两个价，粉丝还在那刷“姐姐被黑了”，这届粉丝是不是不看截图啊。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">K</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">Kenzy的旧歌迷</div>
+                                <div class="comment-text">歌还行，但捐款这事真的洗不动。基金会公示日期比他自己说的晚了快十天，这怎么解释。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">吃</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">吃瓜不吐皮</div>
+                                <div class="comment-text">蹲一个阿哲前运营的后续，合同都放了，聊天记录应该也有吧。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">代</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">代笔圈观察</div>
+                                <div class="comment-text">小鹿酱那个脚本报价3800一条在业内算中上水平了，有些团队2000就接。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">平</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">平静的看客</div>
+                                <div class="comment-text">说实话这些主播网红塌房节奏太快了，上个月还在追另一个，这个月已经换人了。累。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">小</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">小飞别飞了</div>
+                                <div class="comment-text">代打工作室都承认接单了，粉丝还在说“陪练不算代打”，陪练能打到巅峰赛前100？</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">时</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">时间戳猎人</div>
+                                <div class="comment-text">Kenzy那张接收函的日期是11月5日，但他11月3日就说“基金会已经确认”，这又对不上。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">知</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">知识区老观众</div>
+                                <div class="comment-text">洗稿那个UP主之前还挺喜欢的，讲得确实通俗，没想到文案是直接拿别人的。</div>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">猫</div>
+                            <div class="comment-body">
+                                <div class="comment-nickname">猫猫头</div>
+                                <div class="comment-text">最近黑料太多，我都分不清谁是谁了，只记得阿哲和Kenzy，其他的名字太长记不住。</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. 相关资讯 -->
+                <section class="section" id="related-news">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>相关</span>资讯</h2>
+                    </div>
+                    <div class="news-list">
+                        <div class="news-item">
+                            <div class="news-title">阿哲前运营再发声：合同之外还有三份补充协议</div>
+                            <div class="news-date">2026年11月7日</div>
+                            <div class="news-summary">该运营向某娱乐博主提供了三份未曝光的补充协议扫描件，涉及“危机公关响应时效”和“负面舆情预算上限”，其中一份的签署日期为2025年12月。</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-title">小鹿酱代笔团队前员工公开第二段录音</div>
+                            <div class="news-date">2026年11月7日</div>
+                            <div class="news-summary">录音时长4分12秒，内容涉及选题会讨论“如何把618带货数据包装成独立女性奋斗故事”，其中出现“要惨、要真实、要能带货”等原话。</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-title">Kenzy捐款事件基金会公示系统被网友逐条比对</div>
+                            <div class="news-date">2026年11月6日</div>
+                            <div class="news-summary">有网友统计了同一批次公示的17笔捐款，其中15笔的银行回单日期与公示日期相差不超过3个工作日，Kenzy的那笔相差9天，属于该批次中时差最长的一笔。</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-title">代打工作室客服承认接单小飞，称是“教学陪练”</div>
+                            <div class="news-date">2026年11月6日</div>
+                            <div class="news-summary">该客服在QQ群表示“小飞的单子我们确实接过，但都是陪练教学，不是代打上分”，并出示了一张标价表，其中“教学陪练”和“代打上分”为两个不同价目。</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-title">知识区洗稿事件被洗稿作者已提交平台投诉</div>
+                            <div class="news-date">2026年11月5日</div>
+                            <div class="news-summary">公众号“哲学不插电”作者向B站提交了三篇被洗稿文章的发布时间后台截图和原创声明，平台客服回应“正在核对时间戳，预计3个工作日内给出处理结果”。</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-title">琳达带货价格事件杭州市场监管部门收到举报</div>
+                            <div class="news-date">2026年11月5日</div>
+                            <div class="news-summary">举报材料包含两场直播的完整录屏和商品后台标价截图，市场监管部门工作人员表示“已转交相关科室，将按程序核查处理”。</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 9. 相关推荐 -->
+                <section class="section" id="related-tags">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>相关</span>推荐</h2>
+                    </div>
+                    <div class="related-tags">
+                        <a href="#featured" class="related-tag">控评合同逐页拆解</a>
+                        <a href="#featured" class="related-tag">代笔聊天记录全览</a>
+                        <a href="#featured" class="related-tag">捐款时间线对比工具</a>
+                        <a href="#featured" class="related-tag">声纹比对方法入门</a>
+                        <a href="#featured" class="related-tag">洗稿重合率计算</a>
+                        <a href="#featured" class="related-tag">带货后台截图识别</a>
+                        <a href="#featured" class="related-tag">粉丝控评账号特征</a>
+                    </div>
+                </section>
+
+                <!-- 10. 补充板块：反差热榜 -->
+                <section class="section" id="hot-rank">
+                    <div class="section-header">
+                        <h2 class="section-title"><span>反差</span>热榜</h2>
+                        <span class="section-more">11月8日 08:00</span>
+                    </div>
+                    <div class="hot-list">
+                        <div class="hot-item">
+                            <span class="hot-rank top">1</span>
+                            <span class="hot-name">阿哲控评合同 · 前运营再放三份补充协议</span>
+                            <span class="hot-count">98.2万</span>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-rank top">2</span>
+                            <span class="hot-name">小鹿酱代笔录音 · 第二段4分12秒流出</span>
+                            <span class="hot-count">86.4万</span>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-rank top">3</span>
+                            <span class="hot-name">Kenzy捐款时间差 · 同批次17笔中15笔3天内公示</span>
+                            <span class="hot-count">74.1万</span>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-rank">4</span>
+                            <span class="hot-name">小飞代打声纹比对 · 工作室承认接单</span>
+                            <span class="hot-count">63.7万</span>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-rank">5</span>
+                            <span class="hot-name">知识区UP主洗稿 · 重合率91%</span>
+                            <span class="hot-count">58.3万</span>
+                        </div>
+                        <div class="hot-item">
+                            <span class="hot-rank">6</span>
+                            <span class="hot-name">琳达带货价格差 · 市监部门已收举报</span>
+                            <span class="hot-count">51.6万</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 右侧辅助栏 -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h4>实时更新速览</h4>
+                    <ul class="sidebar-list">
+                        <li><span class="time">11月7日</span>阿哲回应视频播放量破200万</li>
+                        <li><span class="time">11月7日</span>小鹿酱代笔第二段录音流出</li>
+                        <li><span class="time">11月6日</span>Kenzy追加晒基金会接收函</li>
+                        <li><span class="time">11月6日</span>小飞代打工作室承认接单</li>
+                        <li><span class="time">11月5日</span>知识区UP主洗稿被平台受理</li>
+                        <li><span class="time">11月5日</span>琳达带货价格被市监核查</li>
+                    </ul>
+                </div>
+                <div class="sidebar-card">
+                    <h4>反差类型分布</h4>
+                    <ul class="sidebar-list">
+                        <li><span class="time">主播塌房</span>32%</li>
+                        <li><span class="time">美妆翻车</span>21%</li>
+                        <li><span class="time">歌手争议</span>17%</li>
+                        <li><span class="time">游戏圈</span>12%</li>
+                        <li><span class="time">知识区</span>10%</li>
+                        <li><span class="time">带货</span>8%</li>
+                    </ul>
+                </div>
+                <div class="sidebar-card">
+                    <h4>投稿互动</h4>
+                    <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.7;">
+                        有新的反差线索或时间线对比？<br>
+                        可向站内“线索投稿”板块提交截图与说明，编辑会在24小时内核对并回复。
+                    </p>
+                    <a href="#comments" class="related-tag" style="margin-top:10px;display:inline-block;">投稿入口</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-text">黑料头条反差</span>
+                <p>聚焦2026年10月至11月间网络争议事件，覆盖主播、美妆、音乐、游戏、知识区、带货六类领域，收录塌房时间线、回应追踪与证据拆解，每日08:00和20:00两次更新。</p>
+            </div>
+            <div class="footer-col">
+                <h5>内容分类</h5>
+                <ul>
+                    <li><a href="#featured">主播塌房</a></li>
+                    <li><a href="#featured">美妆翻车</a></li>
+                    <li><a href="#featured">歌手争议</a></li>
+                    <li><a href="#featured">游戏圈</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>互动参与</h5>
+                <ul>
+                    <li><a href="#comments">线索投稿</a></li>
+                    <li><a href="#comments">用户评论</a></li>
+                    <li><a href="#faq">常见问答</a></li>
+                    <li><a href="#related-news">相关资讯</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>关于</h5>
+                <ul>
+                    <li><a href="#overview">领域概览</a></li>
+                    <li><a href="#deep-dive">深度拆解</a></li>
+                    <li><a href="#hot-rank">反差热榜</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>示例内容聚合页 · 数据为演示用途 · 更新截至2026年11月8日</span>
+            <span>© 2026 黑料头条反差</span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+    <script>
+        (function() {
+            // 移动端菜单
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('mainNav');
+            const overlay = document.getElementById('menuOverlay');
+
+            function toggleMenu(open) {
+                const isOpen = open !== undefined ? open : !navLinks.classList.contains('mobile-open');
+                navLinks.classList.toggle('mobile-open', isOpen);
+                overlay.classList.toggle('active', isOpen);
+                hamburger.setAttribute('aria-expanded', isOpen);
+            }
+
+            hamburger.addEventListener('click', () => toggleMenu());
+            overlay.addEventListener('click', () => toggleMenu(false));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    toggleMenu(false);
+                }
+            });
+
+            // 点击导航项后收起
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 740) {
+                        toggleMenu(false);
+                    }
+                });
+            });
+
+            // 分类筛选
+            const categoryItems = document.querySelectorAll('.category-item');
+            const cards = document.querySelectorAll('#cardGrid .card');
+
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const filter = this.dataset.filter;
+                    if (!filter) return;
+
+                    const isActive = this.classList.contains('active-filter');
+                    categoryItems.forEach(c => c.classList.remove('active-filter'));
+
+                    if (isActive) {
+                        cards.forEach(card => card.style.display = '');
+                    } else {
+                        this.classList.add('active-filter');
+                        cards.forEach(card => {
+                            const tags = card.dataset.tags || '';
+                            card.style.display = tags.includes(filter) ? '' : 'none';
+                        });
+                    }
+                });
+            });
+
+            // 搜索
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const cardGrid = document.getElementById('cardGrid');
+
+            function performSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                if (!query) {
+                    cards.forEach(card => card.style.display = '');
+                    const oldNo = document.querySelector('.no-result');
+                    if (oldNo) oldNo.remove();
+                    return;
+                }
+
+                let found = 0;
+                cards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    const tags = (card.dataset.tags || '').toLowerCase();
+                    if (text.includes(query) || tags.includes(query)) {
+                        card.style.display = '';
+                        found++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                const oldNo = document.querySelector('.no-result');
+                if (oldNo) oldNo.remove();
+
+                if (found === 0) {
+                    const noResult = document.createElement('div');
+                    noResult.className = 'no-result';
+                    noResult.textContent = '没有找到与“' + searchInput.value.trim() + '”相关的内容，试试更短的关键词。';
+                    cardGrid.parentNode.insertBefore(noResult, cardGrid.nextSibling);
+                }
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+
+            // 回到顶部
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > window.innerHeight) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 频道导航高亮（简单滚动监听）
+            const sections = document.querySelectorAll('.section');
+            const channelLinks = document.querySelectorAll('.channel-nav a');
+
+            if (channelLinks.length) {
+                window.addEventListener('scroll', () => {
+                    let currentId = '';
+                    sections.forEach(section => {
+                        const rect = section.getBoundingClientRect();
+                        if (rect.top <= 150 && rect.bottom > 150) {
+                            currentId = section.id;
+                        }
+                    });
+                    channelLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + currentId) {
+                            link.classList.add('active');
+                        }
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+  </html>
