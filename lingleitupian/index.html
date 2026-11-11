@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>另类图片 - 非主流影像聚合与视觉实验</title>
+<meta name="description" content="另类图片聚合非主流摄影、故障艺术、暗黑拼贴与私房视觉，涵盖每日更新、深度解析、创作者评论与分类索引，适合摄影爱好者与视觉创作者浏览参考。">
+<meta name="keywords" content="另类图片">
+<style>
+:root{
+  --brand:#6b4c3b;
+  --brand-light:#a67c5b;
+  --brand-dark:#3e2a1e;
+  --bg:#f5f0eb;
+  --panel:#ffffff;
+  --text:#2a221c;
+  --text-secondary:#6b5e55;
+  --text-tertiary:#9b8e84;
+  --line:#e3dbd4;
+  --radius-card:10px;
+  --radius-button:6px;
+  --radius-tag:4px;
+  --radius-banner:8px;
+  --shadow:0 1px 3px rgba(42,34,28,0.08);
+  --shadow-hover:0 4px 12px rgba(42,34,28,0.12);
+  --font:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:120px;}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  font-size:15px;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;height:auto;object-fit:cover;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+ul{list-style:none;}
+
+/* ---- 吸顶公告条 ---- */
+.announce-bar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--brand-dark);
+  color:#f0e8e0;
+  font-size:13px;
+  padding:0;
+  overflow:hidden;
+}
+.announce-inner{
+  max-width:1380px;
+  margin:0 auto;
+  padding:7px 24px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.announce-brand{
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:0.5px;
+  color:#f5e6d8;
+  white-space:nowrap;
+}
+.announce-item{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+.announce-date{
+  color:#d4b89a;
+  font-variant-numeric:tabular-nums;
+}
+.announce-dot{
+  width:4px;height:4px;
+  border-radius:50%;
+  background:#d4b89a;
+  display:inline-block;
+}
+
+/* ---- 吸顶页头 ---- */
+.site-header{
+  position:sticky;
+  top:34px;
+  z-index:99;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow 0.2s;
+}
+.header-inner{
+  max-width:1380px;
+  margin:0 auto;
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  gap:32px;
+  height:62px;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+}
+.logo svg{
+  width:32px;
+  height:32px;
+  flex-shrink:0;
+}
+.logo-text{
+  font-size:19px;
+  font-weight:800;
+  color:var(--brand-dark);
+  letter-spacing:1px;
+}
+.main-nav{
+  display:flex;
+  gap:4px;
+  flex:1;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.main-nav::-webkit-scrollbar{display:none;}
+.main-nav a{
+  padding:6px 12px;
+  font-size:14px;
+  color:var(--text-secondary);
+  border-radius:var(--radius-button);
+  white-space:nowrap;
+  transition:background 0.15s,color 0.15s;
+}
+.main-nav a:hover,
+.main-nav a.active{
+  background:var(--brand-light);
+  color:#fff;
+}
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
+.search-box{
+  display:flex;
+  align-items:center;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:0 12px;
+  height:36px;
+  transition:border-color 0.2s;
+}
+.search-box:focus-within{
+  border-color:var(--brand-light);
+}
+.search-box input{
+  border:none;
+  background:transparent;
+  outline:none;
+  font-size:13px;
+  width:140px;
+  color:var(--text);
+  font-family:inherit;
+}
+.search-box input::placeholder{
+  color:var(--text-tertiary);
+}
+.search-box button{
+  font-size:14px;
+  color:var(--text-tertiary);
+  padding:4px;
+  line-height:1;
+}
+.menu-toggle{
+  display:none;
+  width:36px;
+  height:36px;
+  border-radius:var(--radius-button);
+  background:var(--bg);
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  color:var(--text-secondary);
+}
+.menu-toggle:focus-visible{
+  outline:2px solid var(--brand-light);
+  outline-offset:2px;
+}
+.mobile-nav-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  z-index:98;
+  opacity:0;
+  transition:opacity 0.2s;
+}
+.mobile-nav-overlay.show{
+  display:block;
+  opacity:1;
+}
+
+/* ---- 首屏 ---- */
+.hero{
+  max-width:1380px;
+  margin:0 auto;
+  padding:40px 24px 32px;
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:40px;
+  align-items:center;
+}
+.hero-content h1{
+  font-size:clamp(28px,4vw,44px);
+  font-weight:900;
+  line-height:1.15;
+  color:var(--brand-dark);
+  letter-spacing:2px;
+  margin-bottom:14px;
+}
+.hero-desc{
+  font-size:15px;
+  color:var(--text-secondary);
+  max-width:520px;
+  line-height:1.8;
+  margin-bottom:24px;
+}
+.hero-desc strong{color:var(--brand);}
+.hero-links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.hero-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 20px;
+  border-radius:var(--radius-button);
+  font-size:14px;
+  font-weight:600;
+  transition:background 0.2s,transform 0.2s;
+}
+.hero-link.primary{
+  background:var(--brand);
+  color:#fff;
+}
+.hero-link.primary:hover{
+  background:var(--brand-dark);
+  transform:translateY(-2px);
+}
+.hero-link.secondary{
+  background:var(--panel);
+  color:var(--brand);
+  border:1px solid var(--line);
+}
+.hero-link.secondary:hover{
+  border-color:var(--brand-light);
+  transform:translateY(-2px);
+}
+.hero-visual{
+  position:relative;
+  height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-visual svg{
+  width:100%;
+  height:100%;
+}
+.hero-visual .float-shape{
+  animation:floatShape 6s ease-in-out infinite;
+}
+@keyframes floatShape{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+@media(prefers-reduced-motion:reduce){
+  .float-shape{animation:none;}
+  html{scroll-behavior:auto;}
+  *{transition-duration:0.01ms !important;}
+}
+
+/* ---- 三栏布局 ---- */
+.layout-wrap{
+  max-width:1380px;
+  margin:0 auto;
+  padding:0 24px 48px;
+  display:grid;
+  grid-template-columns:170px 1fr 240px;
+  gap:28px;
+  align-items:start;
+}
+
+/* ---- 左侧频道栏 ---- */
+.channel-sidebar{
+  position:sticky;
+  top:108px;
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow);
+  padding:16px 0;
+  overflow:hidden;
+}
+.channel-sidebar h3{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--text-tertiary);
+  padding:0 16px;
+  margin-bottom:10px;
+  font-weight:600;
+}
+.channel-nav a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 16px;
+  font-size:13.5px;
+  color:var(--text-secondary);
+  transition:background 0.15s,color 0.15s;
+  border-left:2px solid transparent;
+}
+.channel-nav a:hover{
+  background:var(--bg);
+  color:var(--brand);
+}
+.channel-nav a.active{
+  background:#f0e8e0;
+  color:var(--brand-dark);
+  border-left-color:var(--brand);
+  font-weight:600;
+}
+.channel-nav .ch-icon{
+  font-size:14px;
+  width:18px;
+  text-align:center;
+  flex-shrink:0;
+}
+
+/* ---- 主内容区 ---- */
+.main-content{
+  min-width:0;
+}
+.section{
+  margin-bottom:36px;
+}
+.section-title{
+  font-size:20px;
+  font-weight:800;
+  color:var(--brand-dark);
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.section-title::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:var(--line);
+}
+.section-desc{
+  font-size:13.5px;
+  color:var(--text-secondary);
+  margin-bottom:16px;
+  line-height:1.7;
+}
+
+/* ---- 概览 ---- */
+.overview-text{
+  font-size:14.5px;
+  color:var(--text-secondary);
+  line-height:1.85;
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  padding:20px 24px;
+  box-shadow:var(--shadow);
+}
+.overview-text p+p{margin-top:10px;}
+.overview-text strong{color:var(--brand);}
+
+/* ---- 精选卡片网格 ---- */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:16px;
+}
+.card{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:transform 0.2s,box-shadow 0.2s;
+  display:flex;
+  flex-direction:column;
+}
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-hover);
+}
+.card-img{
+  width:100%;
+  height:150px;
+  overflow:hidden;
+  background:var(--bg);
+}
+.card-img img{
+  width:100%;
+  height:100%;
+  transition:transform 0.3s;
+}
+.card:hover .card-img img{
+  transform:scale(1.03);
+}
+.card-body{
+  padding:12px 14px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  flex:1;
+}
+.card-type{
+  font-size:11px;
+  font-weight:700;
+  color:var(--brand-light);
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+.card-title{
+  font-size:15px;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.4;
+}
+.card-desc{
+  font-size:12.5px;
+  color:var(--text-secondary);
+  line-height:1.6;
+  flex:1;
+}
+.card-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:4px;
+}
+.tag{
+  font-size:11px;
+  padding:2px 7px;
+  background:var(--bg);
+  border-radius:var(--radius-tag);
+  color:var(--text-tertiary);
+  white-space:nowrap;
+}
+.card-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:11.5px;
+  color:var(--text-tertiary);
+  margin-top:2px;
+}
+.card-meta .hot{
+  color:#c0572a;
+  font-weight:600;
+}
+
+/* ---- 更新列表 ---- */
+.update-list{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.update-item{
+  display:flex;
+  gap:14px;
+  padding:12px 16px;
+  border-bottom:1px solid var(--line);
+  align-items:flex-start;
+  transition:background 0.15s;
+}
+.update-item:last-child{border-bottom:none;}
+.update-item:hover{background:#faf7f4;}
+.update-time{
+  font-size:12px;
+  color:var(--text-tertiary);
+  white-space:nowrap;
+  min-width:72px;
+  font-variant-numeric:tabular-nums;
+}
+.update-info{
+  flex:1;
+  min-width:0;
+}
+.update-name{
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:2px;
+}
+.update-summary{
+  font-size:12.5px;
+  color:var(--text-secondary);
+  line-height:1.55;
+}
+
+/* ---- 分类入口 ---- */
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.cat-item{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  padding:14px 16px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  transition:transform 0.15s,box-shadow 0.15s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+.cat-item:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-hover);
+}
+.cat-icon{
+  font-size:22px;
+  line-height:1;
+}
+.cat-name{
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+}
+.cat-count{
+  font-size:11px;
+  color:var(--text-tertiary);
+}
+
+/* ---- 深度解析 ---- */
+.deep-dive{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  padding:24px 28px;
+  box-shadow:var(--shadow);
+}
+.deep-dive h3{
+  font-size:17px;
+  font-weight:800;
+  color:var(--brand-dark);
+  margin:22px 0 10px;
+  padding-left:10px;
+  border-left:3px solid var(--brand-light);
+}
+.deep-dive h3:first-of-type{margin-top:0;}
+.deep-dive p{
+  font-size:14px;
+  color:var(--text-secondary);
+  line-height:1.85;
+  margin-bottom:10px;
+}
+.deep-dive ul{
+  margin:8px 0 14px 18px;
+  list-style:disc;
+}
+.deep-dive li{
+  font-size:13.5px;
+  color:var(--text-secondary);
+  line-height:1.75;
+  margin-bottom:4px;
+}
+.deep-dive .callout{
+  background:#faf3ec;
+  border-left:3px solid var(--brand-light);
+  padding:12px 16px;
+  border-radius:0 var(--radius-button) var(--radius-button) 0;
+  font-size:13.5px;
+  color:var(--brand-dark);
+  margin:12px 0;
+  line-height:1.7;
+}
+.deep-dive strong{color:var(--brand-dark);}
+
+/* ---- 体验指南 ---- */
+.guide-steps{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.guide-step{
+  display:flex;
+  gap:14px;
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  padding:16px 18px;
+  box-shadow:var(--shadow);
+  align-items:flex-start;
+}
+.step-num{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:var(--brand);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:800;
+  flex-shrink:0;
+}
+.step-content h4{
+  font-size:14.5px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:4px;
+}
+.step-content p{
+  font-size:13px;
+  color:var(--text-secondary);
+  line-height:1.7;
+}
+
+/* ---- FAQ ---- */
+.faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.faq-list details{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.faq-list summary{
+  padding:13px 18px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  transition:background 0.15s;
+}
+.faq-list summary::-webkit-details-marker{display:none;}
+.faq-list summary::after{
+  content:"+";
+  font-size:18px;
+  color:var(--brand-light);
+  font-weight:400;
+  transition:transform 0.2s;
+  flex-shrink:0;
+}
+.faq-list details[open] summary::after{
+  content:"−";
+}
+.faq-list summary:hover{
+  background:#faf7f4;
+}
+.faq-list .faq-answer{
+  padding:0 18px 16px;
+  font-size:13.5px;
+  color:var(--text-secondary);
+  line-height:1.8;
+}
+
+/* ---- 用户评论 ---- */
+.comment-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px;
+}
+.comment-card{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  padding:12px 14px;
+  box-shadow:var(--shadow);
+  font-size:13px;
+  line-height:1.65;
+  color:var(--text-secondary);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.comment-user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.comment-avatar{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:var(--brand-light);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  flex-shrink:0;
+}
+.comment-nick{
+  font-size:12px;
+  font-weight:600;
+  color:var(--text);
+}
+.comment-text{
+  font-size:12.5px;
+  color:var(--text-secondary);
+}
+.comment-text .mention{
+  color:var(--brand);
+  font-weight:600;
+}
+
+/* ---- 相关资讯 ---- */
+.news-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.news-item{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  padding:14px 18px;
+  box-shadow:var(--shadow);
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+.news-date{
+  font-size:12px;
+  color:var(--text-tertiary);
+  white-space:nowrap;
+  min-width:80px;
+  font-variant-numeric:tabular-nums;
+  padding-top:2px;
+}
+.news-body{
+  flex:1;
+  min-width:0;
+}
+.news-title{
+  font-size:14.5px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:3px;
+}
+.news-summary{
+  font-size:12.5px;
+  color:var(--text-secondary);
+  line-height:1.6;
+}
+
+/* ---- 相关推荐 ---- */
+.rec-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.rec-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:7px 14px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  font-size:13px;
+  color:var(--text-secondary);
+  transition:border-color 0.15s,color 0.15s,background 0.15s;
+}
+.rec-tag:hover{
+  border-color:var(--brand-light);
+  color:var(--brand);
+  background:#faf3ec;
+}
+
+/* ---- 补充板块：榜单 ---- */
+.ranking-list{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.rank-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 16px;
+  border-bottom:1px solid var(--line);
+  transition:background 0.15s;
+}
+.rank-item:last-child{border-bottom:none;}
+.rank-item:hover{background:#faf7f4;}
+.rank-num{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--bg);
+  color:var(--text-tertiary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+  flex-shrink:0;
+}
+.rank-num.top1{background:#c0572a;color:#fff;}
+.rank-num.top2{background:var(--brand-light);color:#fff;}
+.rank-num.top3{background:#b89a7a;color:#fff;}
+.rank-name{
+  flex:1;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--text);
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.rank-score{
+  font-size:12px;
+  color:var(--text-tertiary);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---- 投稿互动 ---- */
+.submit-cta{
+  background:linear-gradient(135deg,var(--brand-dark),var(--brand));
+  border-radius:var(--radius-banner);
+  padding:24px 28px;
+  color:#f0e8e0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.submit-cta h3{
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+.submit-cta p{
+  font-size:13px;
+  color:#d4c4b4;
+  line-height:1.6;
+}
+.submit-btn{
+  padding:10px 24px;
+  background:#f0e8e0;
+  color:var(--brand-dark);
+  border-radius:var(--radius-button);
+  font-size:14px;
+  font-weight:700;
+  transition:background 0.2s,transform 0.2s;
+  white-space:nowrap;
+}
+.submit-btn:hover{
+  background:#fff;
+  transform:translateY(-2px);
+}
+
+/* ---- 右侧辅助栏 ---- */
+.aux-sidebar{
+  position:sticky;
+  top:108px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.aux-card{
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow);
+  padding:16px 18px;
+}
+.aux-card h3{
+  font-size:14px;
+  font-weight:800;
+  color:var(--brand-dark);
+  margin-bottom:10px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+.aux-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.aux-list a{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:var(--text-secondary);
+  padding:3px 0;
+  transition:color 0.15s;
+}
+.aux-list a:hover{color:var(--brand);}
+.aux-list .aux-num{
+  font-size:11px;
+  color:var(--text-tertiary);
+  font-variant-numeric:tabular-nums;
+  flex-shrink:0;
+}
+.aux-tag-cloud{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.aux-tag-cloud span{
+  font-size:11.5px;
+  padding:3px 9px;
+  background:var(--bg);
+  border-radius:12px;
+  color:var(--text-tertiary);
+  cursor:default;
+}
+.aux-tag-cloud span:hover{
+  background:#f0e8e0;
+  color:var(--brand);
+}
+
+/* ---- 页脚 ---- */
+.site-footer{
+  background:var(--brand-dark);
+  color:#c4b4a4;
+  margin-top:20px;
+}
+.footer-inner{
+  max-width:1380px;
+  margin:0 auto;
+  padding:36px 24px 24px;
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:32px;
+  margin-bottom:28px;
+}
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+.footer-brand svg{
+  width:28px;
+  height:28px;
+  flex-shrink:0;
+}
+.footer-brand span{
+  font-size:18px;
+  font-weight:800;
+  color:#f0e8e0;
+  letter-spacing:1px;
+}
+.footer-desc{
+  font-size:13px;
+  line-height:1.75;
+  color:#a89888;
+  max-width:340px;
+}
+.footer-col h4{
+  font-size:13px;
+  font-weight:700;
+  color:#e0d4c8;
+  margin-bottom:10px;
+}
+.footer-col a{
+  display:block;
+  font-size:12.5px;
+  color:#a89888;
+  padding:3px 0;
+  transition:color 0.15s;
+}
+.footer-col a:hover{color:#f0e8e0;}
+.footer-bottom{
+  border-top:1px solid #4e3a2c;
+  padding-top:16px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  font-size:12px;
+  color:#8a7a6a;
+}
+
+/* ---- 回到顶部 ---- */
+.back-top{
+  position:fixed;
+  bottom:28px;
+  right:28px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--brand);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  box-shadow:var(--shadow-hover);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.25s,visibility 0.25s,background 0.2s;
+  z-index:90;
+  border:none;
+}
+.back-top.show{
+  opacity:1;
+  visibility:visible;
+}
+.back-top:hover{
+  background:var(--brand-dark);
+}
+.back-top:focus-visible{
+  outline:2px solid #fff;
+  outline-offset:2px;
+}
+
+/* ---- 搜索无结果 ---- */
+.no-result{
+  display:none;
+  text-align:center;
+  padding:30px 20px;
+  color:var(--text-tertiary);
+  font-size:14px;
+}
+.no-result.show{display:block;}
+
+/* ---- 响应式 ---- */
+@media(max-width:1024px){
+  .layout-wrap{
+    grid-template-columns:1fr 240px;
+  }
+  .channel-sidebar{
+    display:none;
+  }
+  .hero{
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:32px 24px 24px;
+  }
+  .hero-visual{
+    height:180px;
+    order:-1;
+  }
+  .cat-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+}
+@media(max-width:740px){
+  .layout-wrap{
+    grid-template-columns:1fr;
+    padding:0 16px 32px;
+  }
+  .aux-sidebar{
+    position:static;
+    order:2;
+  }
+  .main-content{
+    order:1;
+  }
+  .header-inner{
+    padding:0 16px;
+    gap:12px;
+    height:56px;
+  }
+  .main-nav{
+    display:none;
+    position:fixed;
+    top:90px;
+    left:16px;
+    right:16px;
+    background:var(--panel);
+    flex-direction:column;
+    padding:12px;
+    border-radius:var(--radius-card);
+    box-shadow:var(--shadow-hover);
+    z-index:97;
+    max-height:60vh;
+    overflow-y:auto;
+    border:1px solid var(--line);
+  }
+  .main-nav.open{
+    display:flex;
+  }
+  .main-nav a{
+    padding:10px 14px;
+    font-size:15px;
+  }
+  .menu-toggle{
+    display:flex;
+  }
+  .search-box input{
+    width:90px;
+  }
+  .announce-inner{
+    padding:5px 16px;
+    gap:12px;
+    font-size:12px;
+  }
+  .announce-brand{
+    font-size:12px;
+  }
+  .site-header{
+    top:30px;
+  }
+  .hero{
+    padding:24px 16px 20px;
+  }
+  .hero-content h1{
+    font-size:26px;
+  }
+  .cat-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .card-grid{
+    grid-template-columns:1fr;
+  }
+  .comment-grid{
+    grid-template-columns:1fr;
+  }
+  .footer-top{
+    grid-template-columns:1fr;
+  }
+  .deep-dive{
+    padding:18px 16px;
+  }
+  .submit-cta{
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+  }
+  .news-item{
+    flex-direction:column;
+    gap:4px;
+  }
+  .update-item{
+    flex-direction:column;
+    gap:4px;
+  }
+  .update-time{
+    min-width:auto;
+  }
+  .back-top{
+    bottom:16px;
+    right:16px;
+    width:38px;
+    height:38px;
+  }
+  .footer-bottom{
+    flex-direction:column;
+    gap:6px;
+  }
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- 吸顶公告条 -->
+<div class="announce-bar">
+  <div class="announce-inner">
+    <span class="announce-brand">另类图片 · 速递</span>
+    <span class="announce-item">
+      <span class="announce-date">2026-11-08</span>
+      <span>新增「暗箱底片修复计划」第7辑</span>
+    </span>
+    <span class="announce-dot"></span>
+    <span class="announce-item">
+      <span class="announce-date">2026-11-07</span>
+      <span>故障艺术专题「数据腐蚀」上线</span>
+    </span>
+    <span class="announce-dot"></span>
+    <span class="announce-item">
+      <span>本周投稿 <strong>47</strong> 组</span>
+    </span>
+  </div>
+</div>
+
+<!-- 吸顶页头 -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/#hero" class="logo" aria-label="另类图片 首页">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="28" height="28" rx="6" fill="#6b4c3b"/>
+        <circle cx="16" cy="13" r="5" stroke="#f0e8e0" stroke-width="2" fill="none"/>
+        <path d="M9 24c0-3.5 3-5.5 7-5.5s7 2 7 5.5" stroke="#d4b89a" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <rect x="6" y="22" width="20" height="2" rx="1" fill="#a67c5b"/>
+      </svg>
+      <span class="logo-text">另类图片</span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="主题导航">
+      <a href="/#overview" class="active">领域概览</a>
+      <a href="/#featured">精选</a>
+      <a href="/#latest">最新更新</a>
+      <a href="/#categories">分类</a>
+      <a href="/#deep-dive">深度解析</a>
+      <a href="/#guide">体验指南</a>
+      <a href="/#faq">问答</a>
+      <a href="/#comments">评论</a>
+      <a href="/#news">资讯</a>
+      <a href="/#ranking">榜单</a>
+      <a href="/#submit">投稿</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜条目、类型…" aria-label="搜索内容">
+        <button id="searchBtn" aria-label="搜索">⌕</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav-overlay" id="navOverlay"></div>
+
+<main>
+  <!-- 首屏 -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>另类图片</h1>
+      <p class="hero-desc">
+        聚合<strong>非主流摄影、故障艺术、暗黑拼贴、私房视觉</strong>与实验影像。每日收录独立创作者投稿，附类型标签、热度与更新动态，适合寻找反常规视觉参考的摄影爱好者与数字艺术从业者浏览。
+      </p>
+      <div class="hero-links">
+        <a href="/#featured" class="hero-link primary">浏览精选 →</a>
+        <a href="/#submit" class="hero-link secondary">投稿作品</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 260" fill="none">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6b4c3b" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#a67c5b" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="20" width="360" height="220" rx="12" fill="url(#g1)"/>
+        <g class="float-shape">
+          <rect x="60" y="60" width="120" height="120" rx="8" fill="#6b4c3b" opacity="0.6" transform="rotate(-6 120 120)"/>
+          <rect x="110" y="80" width="100" height="100" rx="8" fill="#a67c5b" opacity="0.5" transform="rotate(8 160 130)"/>
+          <rect x="190" y="50" width="130" height="130" rx="8" fill="#3e2a1e" opacity="0.35" transform="rotate(-3 255 115)"/>
+          <circle cx="300" cy="180" r="32" fill="#d4b89a" opacity="0.5"/>
+          <circle cx="80" cy="200" r="18" fill="#a67c5b" opacity="0.4"/>
+        </g>
+        <line x1="40" y1="230" x2="360" y2="230" stroke="#a67c5b" stroke-width="1" opacity="0.4"/>
+        <text x="200" y="250" text-anchor="middle" font-size="10" fill="#9b8e84" letter-spacing="4">ALTERNATIVE IMAGE ARCHIVE</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 三栏布局 -->
+  <div class="layout-wrap">
+    <!-- 左侧频道栏 -->
+    <aside class="channel-sidebar" aria-label="频道索引">
+      <h3>频道索引</h3>
+      <nav class="channel-nav">
+        <a href="/#featured" class="active"><span class="ch-icon">◈</span>精选推荐</a>
+        <a href="/#latest"><span class="ch-icon">▸</span>最新更新</a>
+        <a href="/#categories"><span class="ch-icon">▧</span>分类索引</a>
+        <a href="/#deep-dive"><span class="ch-icon">✎</span>深度解析</a>
+        <a href="/#guide"><span class="ch-icon">◷</span>体验指南</a>
+        <a href="/#faq"><span class="ch-icon">?</span>常见问答</a>
+        <a href="/#comments"><span class="ch-icon">◌</span>用户评论</a>
+        <a href="/#news"><span class="ch-icon">▤</span>相关资讯</a>
+        <a href="/#ranking"><span class="ch-icon">▲</span>热门榜单</a>
+        <a href="/#submit"><span class="ch-icon">✉</span>投稿互动</a>
+      </nav>
+    </aside>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+
+      <!-- 1. 领域概览 -->
+      <section class="section" id="overview">
+        <h2 class="section-title">另类影像领域概览</h2>
+        <div class="overview-text">
+          <p>另类图片所覆盖的影像生产，集中在主流商业摄影与社交媒体审美之外。按创作手段可以分成几条线：<strong>胶片漏光、双重曝光、底片霉斑</strong>这类物理介入；<strong>故障艺术（Glitch）、像素拉伸、色阶分离</strong>这类数字处理；<strong>暗黑拼贴、复古医学插图再拼贴、哥特拼贴</strong>这类手工与扫描混合的路径；以及<strong>私房自然光、身体局部特写、素人肖像</strong>这类偏私人叙事的拍摄。</p>
+          <p>2026 年秋季的更新中，胶片类投稿占比回升，10 月单月收到的底片修复与漏光实验组数比 9 月多 11 组。故障艺术方向则因生成式工具普及，作品数量增加但同质化明显，本周上线的「数据腐蚀」专题特意筛掉了 23 组仅套用滤镜、缺少手动干预步骤的投稿。私房与身体类内容在站内始终保持较高点击，但收藏率偏低，多数浏览者只看不存，侧面说明这类图片的消费场景偏向即时浏览而非长期参考。</p>
+          <p>另类图片的收藏价值通常不取决于像素高低，而取决于<strong>创作路径是否可辨</strong>——一张能说清用了哪种底片、哪种化学显影失误、哪几个图层叠加顺序的图，对同行来说比一张高分辨率但流程模糊的图更有参考意义。这也是站内条目普遍要求标注「创作方式」字段的原因。</p>
+        </div>
+      </section>
+
+      <!-- 2. 精选内容推荐 -->
+      <section class="section" id="featured">
+        <h2 class="section-title">精选另类影像条目</h2>
+        <p class="section-desc">按近期热度与收藏比筛选，覆盖胶片实验、数字故障、拼贴与私房四个方向。</p>
+        <div class="card-grid" id="cardGrid">
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg01/400/300" width="400" height="300" loading="lazy" alt="底片霉斑与漏光叠加的胶片扫描">
+            </div>
+            <div class="card-body">
+              <span class="card-type">胶片实验</span>
+              <h3 class="card-title">底片霉斑修复第7辑：柯达 Gold 200 的三年霉变</h3>
+              <p class="card-desc">摄影师阿禾将 2023 年受潮的 12 卷负片重新扫描，保留霉斑边缘的冰裂纹理，只对色偏做局部校正。看点在于霉变分布与显影温度的关系。</p>
+              <div class="card-tags"><span class="tag">底片霉斑</span><span class="tag">漏光</span><span class="tag">胶片扫描</span></div>
+              <div class="card-meta"><span>2026-11-06</span><span class="hot">热度 2.1k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg02/400/300" width="400" height="300" loading="lazy" alt="故障艺术数据腐蚀像素拉伸">
+            </div>
+            <div class="card-body">
+              <span class="card-type">故障艺术</span>
+              <h3 class="card-title">数据腐蚀：手动拆解 JPEG 头部字节的 14 组结果</h3>
+              <p class="card-desc">创作者「灰阶」用十六进制编辑器逐段破坏 JPEG 压缩数据，得到可复现的色块撕裂效果，每组附损坏字节位置截图。</p>
+              <div class="card-tags"><span class="tag">Glitch</span><span class="tag">数据腐蚀</span><span class="tag">像素拉伸</span></div>
+              <div class="card-meta"><span>2026-11-07</span><span class="hot">热度 3.4k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg03/400/300" width="400" height="300" loading="lazy" alt="暗黑拼贴复古医学插图再创作">
+            </div>
+            <div class="card-body">
+              <span class="card-type">暗黑拼贴</span>
+              <h3 class="card-title">解剖图鉴拼贴：19 世纪医学插画与电路板的错位</h3>
+              <p class="card-desc">以 1860 年代《解剖图谱》扫描件为底，叠加拆机电路板照片，边缘做焦烧处理。作者称灵感来自旧书修复时撕坏的扉页。</p>
+              <div class="card-tags"><span class="tag">拼贴</span><span class="tag">医学插图</span><span class="tag">复古</span></div>
+              <div class="card-meta"><span>2026-11-04</span><span class="hot">热度 1.8k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg04/400/300" width="400" height="300" loading="lazy" alt="私房自然光窗帘透射身体局部">
+            </div>
+            <div class="card-body">
+              <span class="card-type">私房视觉</span>
+              <h3 class="card-title">午后窗帘光：素人模特的 9 个局部特写</h3>
+              <p class="card-desc">全程自然光，只用白色纱帘与黑色背景布。摄影师记录了三组不同时段的光比数据，适合想拍同类题材但缺棚灯的人参考。</p>
+              <div class="card-tags"><span class="tag">私房</span><span class="tag">自然光</span><span class="tag">身体局部</span></div>
+              <div class="card-meta"><span>2026-11-03</span><span class="hot">热度 2.7k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg05/400/300" width="400" height="300" loading="lazy" alt="彩色负片交叉冲洗偏色实验">
+            </div>
+            <div class="card-body">
+              <span class="card-type">胶片实验</span>
+              <h3 class="card-title">交叉冲洗偏色对照：富士 C200 在 E-6 工艺下的 6 种色偏</h3>
+              <p class="card-desc">同一卷分六段不同曝光，再统一用 E-6 药水冲扫，结果青绿与品红通道差异明显。附冲洗温度记录表。</p>
+              <div class="card-tags"><span class="tag">交叉冲洗</span><span class="tag">偏色</span><span class="tag">C200</span></div>
+              <div class="card-meta"><span>2026-11-02</span><span class="hot">热度 1.5k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg06/400/300" width="400" height="300" loading="lazy" alt="双重曝光人像与枯树枝叠加">
+            </div>
+            <div class="card-body">
+              <span class="card-type">双重曝光</span>
+              <h3 class="card-title">人像与枯枝：宾得 67 机内双重曝光 8 帧</h3>
+              <p class="card-desc">用 120 中画幅机内叠加，先拍人像再拍枯枝，曝光补偿减 1.5 档。作者提醒叠加顺序直接影响枝干走向，附每帧参数。</p>
+              <div class="card-tags"><span class="tag">双重曝光</span><span class="tag">中画幅</span><span class="tag">宾得67</span></div>
+              <div class="card-meta"><span>2026-10-30</span><span class="hot">热度 1.2k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg07/400/300" width="400" height="300" loading="lazy" alt="像素排序脚本处理的人像变形">
+            </div>
+            <div class="card-body">
+              <span class="card-type">数字故障</span>
+              <h3 class="card-title">像素排序脚本：用 Processing 重排人像亮度通道</h3>
+              <p class="card-desc">按行读取像素亮度并排序，人像轮廓被拉成水平条纹。代码与关键参数公开，适合有基础编程能力的视觉作者尝试。</p>
+              <div class="card-tags"><span class="tag">像素排序</span><span class="tag">Processing</span><span class="tag">编码艺术</span></div>
+              <div class="card-meta"><span>2026-10-28</span><span class="hot">热度 1.9k</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/altimg08/400/300" width="400" height="300" loading="lazy" alt="宝丽来移膜与手绘叠加的拼贴">
+            </div>
+            <div class="card-body">
+              <span class="card-type">手工介入</span>
+              <h3 class="card-title">宝丽来移膜试验：把乳剂层贴到水彩纸上的 5 次失败</h3>
+              <p class="card-desc">记录了水温 38°C 与 42°C 下乳剂层完整率的差别，以及晾干后收缩造成的裂纹。失败样本一并保留展示。</p>
+              <div class="card-tags"><span class="tag">宝丽来</span><span class="tag">移膜</span><span class="tag">手工影像</span></div>
+              <div class="card-meta"><span>2026-10-25</span><span class="hot">热度 980</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="no-result" id="noResult">没有匹配「<span id="noResultWord"></span>」的条目，换个关键词试试。</div>
+      </section>
+
+      <!-- 3. 最新更新 -->
+      <section class="section" id="latest">
+        <h2 class="section-title">最新更新与动态</h2>
+        <div class="update-list">
+          <div class="update-item">
+            <span class="update-time">11-08 09:20</span>
+            <div class="update-info">
+              <div class="update-name">「暗箱底片修复计划」第7辑上线</div>
+              <div class="update-summary">新增 9 组柯达与富士负片的霉斑样本，含显影温度对照表。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11-07 16:45</span>
+            <div class="update-info">
+              <div class="update-name">故障艺术专题「数据腐蚀」发布</div>
+              <div class="update-summary">收录 14 组手动破坏 JPEG 字节的作品，附可复现步骤。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11-06 11:10</span>
+            <div class="update-info">
+              <div class="update-name">阿禾「底片霉斑修复」收藏量破 2000</div>
+              <div class="update-summary">该组作品近三日收藏比升至 18%，为胶片类本周最高。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11-05 20:30</span>
+            <div class="update-info">
+              <div class="update-name">「灰阶」发布数据腐蚀第二组</div>
+              <div class="update-summary">改用 PNG 无损格式破坏，得到更细碎的色块边缘。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11-04 14:05</span>
+            <div class="update-info">
+              <div class="update-name">解剖图鉴拼贴入选本周编辑精选</div>
+              <div class="update-summary">作者注明医学插图来自 1860 年代《解剖图谱》扫描件。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11-03 10:15</span>
+            <div class="update-info">
+              <div class="update-name">午后窗帘光系列更新第 9 张</div>
+              <div class="update-summary">补拍黄昏时段，光比数据从 1:4 变为 1:2.5。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">11-02 08:50</span>
+            <div class="update-info">
+              <div class="update-name">交叉冲洗偏色对照新增 2 段曝光</div>
+              <div class="update-summary">补充过曝 2 档与欠曝 1 档样本，色偏走向相反。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">10-30 19:00</span>
+            <div class="update-info">
+              <div class="update-name">宾得67双重曝光 8 帧全部上传</div>
+              <div class="update-summary">每帧附叠加顺序与曝光补偿值，末帧曝光不足。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">10-28 13:40</span>
+            <div class="update-info">
+              <div class="update-name">像素排序脚本更新 Processing 4.3 版本</div>
+              <div class="update-summary">修复了原脚本在高分辨率下内存溢出的问题。</div>
+            </div>
+          </div>
+          <div class="update-item">
+            <span class="update-time">10-25 17:20</span>
+            <div class="update-info">
+              <div class="update-name">宝丽来移膜试验补充失败样本</div>
+              <div class="update-summary">新增 38°C 水温下乳剂层断裂的微距照片 3 张。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 分类入口 -->
+      <section class="section" id="categories">
+        <h2 class="section-title">按类型查找另类图片</h2>
+        <div class="cat-grid">
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">🎞</span>
+            <span class="cat-name">胶片实验</span>
+            <span class="cat-count">128 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">⚡</span>
+            <span class="cat-name">故障艺术</span>
+            <span class="cat-count">94 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">✂</span>
+            <span class="cat-name">暗黑拼贴</span>
+            <span class="cat-count">76 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">🕯</span>
+            <span class="cat-name">私房自然光</span>
+            <span class="cat-count">112 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">◐</span>
+            <span class="cat-name">双重曝光</span>
+            <span class="cat-count">63 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">▦</span>
+            <span class="cat-name">像素排序</span>
+            <span class="cat-count">41 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">🧪</span>
+            <span class="cat-name">手工介入</span>
+            <span class="cat-count">57 组</span>
+          </a>
+          <a href="/#featured" class="cat-item">
+            <span class="cat-icon">▧</span>
+            <span class="cat-name">底片霉斑</span>
+            <span class="cat-count">35 组</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- 5. 深度解析 -->
+      <section class="section" id="deep-dive">
+        <h2 class="section-title">另类影像的判断维度与消费路径</h2>
+        <div class="deep-dive">
+          <h3>胶片实验的价值不在「好看」，在可复现的失误</h3>
+          <p>一张漏光照片如果只说「随便拍的」，对同行几乎没有参考价值。阿禾的底片霉斑系列之所以收藏比高，是因为每组都标注了负片型号（柯达 Gold 200、富士 C200）、受潮时长（2023 年 6 月至 2026 年 9 月）、显影温度（38°C 与 42°C 两档）。这些字段让另一名摄影师能大致判断自己的底片在类似条件下会得到什么结果——霉斑会沿乳剂层哪一侧扩散、漏光边缘会不会发蓝。</p>
+          <p>反过来，故障艺术板块近期收到的投稿中，有 23 组只用了手机 App 的「故障滤镜」一键生成，未记录任何参数或图层顺序。这类作品在本周「数据腐蚀」专题筛选中被排除，原因不是效果不好看，而是<strong>无法拆解</strong>。站内编辑的筛选标准写在专题说明里：至少标注一项可复现的操作步骤，比如十六进制编辑器的偏移量、像素排序的读取方向、色阶分离的通道数。</p>
+          <div class="callout">判断一张实验影像是否值得细看，先看它写清了哪几个环节：底片型号 → 拍摄参数 → 介入方式 → 显影/扫描条件。缺少两项以上，基本只能当情绪图浏览。</div>
+
+          <h3>故障艺术的分化：字节级破坏 vs 滤镜级变形</h3>
+          <p>2026 年下半年，生成式工具让「故障感」图片的产量明显上升，但站内数据呈现出另一种走向：真正被反复收藏的故障作品，集中在手动介入类。以「灰阶」的两组作品为例——第一组用十六进制编辑器破坏 JPEG 头部字节，第二组改用 PNG 无损格式做类似操作。前者的色块边缘粗粝、有压缩噪点参与；后者边缘更细碎，但少了 JPEG 压缩本身的块状纹理。作者把两组并排展示，观众能直接看出差异。</p>
+          <p>滤镜级变形的典型问题是同质化：同一款 App 的「故障」预设，在不同用户手中产出的效果高度相似，区别只剩原图内容。站内 10 月收到的故障类投稿里，带「—键滤镜」描述的占比约四成，而这部分作品的平均收藏量只有手动介入类的三分之一。这个数字不是评判优劣，只是说明：<strong>能说清怎么做的故障图，在同行之间传播得更远。</strong></p>
+
+          <h3>私房类图片的浏览与收藏为何脱节</h3>
+          <p>私房自然光板块的点击量在站内长期排前二，但收藏比（收藏数/浏览量）只有胶片实验类的约一半。这一现象可以拆成三个可核对的环节：第一，私房类作品的主要消费场景是即时浏览，用户看完即走，缺少「留作参考」的动机；第二，部分作品的光线参数记录不完整，想学布光的人找不到可复用的数据；第三，题材本身的私密属性让部分用户不愿在账号内留下收藏痕迹。</p>
+          <p>「午后窗帘光」系列是个例外。摄影师把三组不同时段的光比（上午 1:4、正午 1:2、黄昏 1:2.5）和纱帘层数都写进了说明，收藏比因此升到 14%，接近胶片实验类的中位水平。这说明题材的私密性不是收藏率的唯一变量，<strong>可复用的技术信息</strong>同样在起作用。</p>
+
+          <h3>拼贴类作品的版权与来源标注</h3>
+          <p>暗黑拼贴板块涉及大量旧书扫描件、医学插图、广告老照片的再使用。站内目前的做法是要求投稿者标注素材来源：书名、出版年份、扫描来源（自扫或公共图书馆数字档案）。解剖图鉴拼贴的作者注明插图来自 1860 年代《解剖图谱》，属于公有领域素材，所以可以自由使用。另一组使用 1980 年代杂志广告的拼贴，作者标注了「私人收藏扫描，未获授权」，站内将其归入「来源存疑」标签，不进入编辑精选。</p>
+          <p>对浏览者来说，这个标签提供了一个判断依据：看到「来源存疑」的拼贴，可以欣赏构图，但不宜直接拿去做二次商用素材。对创作者来说，标注来源的成本很低，却能决定作品能不能被同行放心引用。</p>
+        </div>
+      </section>
+
+      <!-- 6. 体验指南 -->
+      <section class="section" id="guide">
+        <h2 class="section-title">另类影像的观看顺序与判断方法</h2>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>先按创作手段筛，不按风格筛</h4>
+              <p>「暗黑」「复古」「情绪」这类风格词在另类影像里指向模糊，同一张图可以被归进三个风格标签。更有效的入口是创作手段：胶片实验、数字故障、手工拼贴、私房自然光。选了手段，作品的可复现程度马上能对比。</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>看说明字段里有没有参数</h4>
+              <p>一张实验影像的说明如果只写「随手拍」「感觉来了」，对学习没有帮助。优先看带底片型号、显影温度、图层顺序、字节偏移量这些具体字段的条目。参数越具体，说明作者越可能愿意回答追问。</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>同类作品横向比三组</h4>
+              <p>比如看交叉冲洗，把富士 C200 在 E-6 工艺下的偏色结果，和另一位作者用柯达 Portra 400 做同样处理的结果并排。偏色方向、颗粒粗细、高光溢出程度的差异，比单看一张图能获得更多信息。</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>私房类优先看光比记录</h4>
+              <p>私房自然光作品里，注明光比和纱帘层数的条目更有参考价值。没有棚灯的人可以按记录复现类似效果，而不是靠猜。光比数据一般写在作品说明的第二段，容易被忽略。</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>拼贴类先查素材来源标签</h4>
+              <p>看到拼贴作品，先找「来源存疑」或「公有领域」标签。公有领域素材的拼贴可以放心参考构图与配色；来源存疑的作品适合看处理手法，不适合直接搬运素材。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section class="section" id="faq">
+        <h2 class="section-title">关于另类图片的常见问题</h2>
+        <div class="faq-list">
+          <details>
+            <summary>底片霉斑和普通划痕在扫描件上怎么区分？</summary>
+            <div class="faq-answer">霉斑通常呈树枝状或冰裂纹，边缘有细微的青色或褐色扩散，且沿乳剂层分布；划痕多为直线或弧线，方向与底片运行方向相关，边缘锐利、没有颜色扩散。阿禾第7辑里有一张同时含霉斑和划痕的样本，对照看更清楚：霉斑在暗部呈网状，划痕在亮部呈单线。</div>
+          </details>
+          <details>
+            <summary>交叉冲洗用 E-6 工艺冲 C-41 负片，偏色能控制吗？</summary>
+            <div class="faq-answer">只能部分控制。富士 C200 在 E-6 工艺下倾向青绿高光与品红阴影，曝光过 1 到 2 档会加重青绿，欠曝则品红更明显。10 月底更新的对照样本里，同一卷分六段曝光，色偏走向随曝光量变化，说明控制偏色的主要手段是曝光补偿，而非药水温度。</div>
+          </details>
+          <details>
+            <summary>故障艺术里「字节级破坏」和「滤镜」的效果差别在哪？</summary>
+            <div class="faq-answer">字节级破坏会保留原文件的压缩噪点和块状纹理，色块边缘粗粝、有随机性；滤镜级变形通常更平滑、重复性高，同一预设下不同图片的效果趋同。灰阶的两组作品并排展示时，JPEG 那组的块状边缘和 PNG 那组的细碎条纹差异肉眼可辨。</div>
+          </details>
+          <details>
+            <summary>私房自然光拍摄，光比记录一般怎么写？</summary>
+            <div class="faq-answer">写两个数：亮部与暗部的亮度比值，以及拍摄时段。「午后窗帘光」系列的记录格式是「上午 1:4、正午 1:2、黄昏 1:2.5，纱帘两层」。光比数据配合时段，另一名摄影师就能判断自己所在时区的类似条件能否复现。</div>
+          </details>
+          <details>
+            <summary>拼贴用的旧书插图，哪些可以放心用？</summary>
+            <div class="faq-answer">出版年份在 1929 年之前、作者去世超过 50 年的插图，通常进入公有领域，例如 1860 年代《解剖图谱》的扫描件。1980 年代杂志广告、当代摄影画册里的图，即使扫描来源是私人收藏，也仍受版权保护，站内会标「来源存疑」。</div>
+          </details>
+          <details>
+            <summary>宝丽来移膜失败后，乳剂层还能再用吗？</summary>
+            <div class="faq-answer">基本不能。乳剂层一旦断裂或收缩，重新贴附时裂纹会扩大。10 月更新的失败样本显示，38°C 水温下乳剂层完整率约六成，42°C 下降到三成左右，失败样本的裂纹走向与水温相关。作者保留失败样本，主要是给后来者看水温与完整率的对应关系。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8. 用户评论 -->
+      <section class="section" id="comments">
+        <h2 class="section-title">浏览者与创作者的评论</h2>
+        <div class="comment-grid">
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">禾</span><span class="comment-nick">阿禾本人</span></div>
+            <div class="comment-text">第7辑里那张金200的霉斑，其实是2023年梅雨季忘了关窗。发出来就是想让人看看不修掉会是什么样。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">灰</span><span class="comment-nick">灰阶</span></div>
+            <div class="comment-text">PNG 那组色块是更碎，但少了 JPEG 的块状噪点，两种我都留着。有人问脚本，回头整理个简化版放上来。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">1</span><span class="comment-nick">显影罐没盖</span></div>
+            <div class="comment-text">交叉冲洗那段太真实了，我上个月刚废了一卷，偏得亲妈都不认识。曝光补偿确实比调温度管用。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">2</span><span class="comment-nick">暗房小刘</span></div>
+            <div class="comment-text">私房那组光比记录很实用，中午1:2我试过，纱帘两层没错。就是模特不好找（笑）。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">3</span><span class="comment-nick">像素搬运工</span></div>
+            <div class="comment-text">故障艺术现在一堆 App 一键生成的，看多了真的腻。还是字节级破坏有意思，至少每次结果不一样。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">4</span><span class="comment-nick">旧书摊常客</span></div>
+            <div class="comment-text">解剖图鉴拼贴那个，底图我好像在孔夫子见过同款扫描件。公有领域的素材用起来确实少很多麻烦。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">5</span><span class="comment-nick">宾得67重度用户</span></div>
+            <div class="comment-text">双重曝光减1.5档我记下了，之前老叠太亮。枯枝那组枝干走向确实跟叠加顺序有关，第二张比第一张顺眼。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">6</span><span class="comment-nick">不冲卷会死</span></div>
+            <div class="comment-text">底片霉斑这个方向有点意思，但我还是觉得霉变不可控，当实验记录看可以，真去复现风险大。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">7</span><span class="comment-nick">Processing菜鸟</span></div>
+            <div class="comment-text">像素排序脚本跑通了，就是高分辨率会卡，等作者更新4.3版本。内存溢出那个问题我遇到了。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">8</span><span class="comment-nick">宝丽来杀手</span></div>
+            <div class="comment-text">移膜我失败了五次，乳剂层裂得比作者还惨。38度水温确实比42度好，但晾干收缩还是控制不住。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">9</span><span class="comment-nick">只看不存</span></div>
+            <div class="comment-text">私房类我基本看完就关，不是不好，是不太方便收藏。光比记录那种会多看两眼。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">10</span><span class="comment-nick">数据腐蚀爱好者</span></div>
+            <div class="comment-text">十六进制破坏 JPEG 头部这个思路，跟音频文件改扩展名有点像。色块撕裂的随机性挺上瘾的。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">11</span><span class="comment-nick">路过看一眼</span></div>
+            <div class="comment-text">有些故障图颜色太炸了，看久了眼睛疼。不过手动介入的那种确实比滤镜的有味道。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">12</span><span class="comment-nick">胶片仓管</span></div>
+            <div class="comment-text">霉斑这事说白了就是保存不当，与其复现不如防潮。不过当反面教材看挺好，知道霉了长啥样。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">13</span><span class="comment-nick">拼贴新手</span></div>
+            <div class="comment-text">来源存疑那个标签挺有用的，至少知道哪些素材不能直接拿去做商单。以前没注意过这个。</div>
+          </div>
+          <div class="comment-card">
+            <div class="comment-user"><span class="comment-avatar">14</span><span class="comment-nick">双重曝光控</span></div>
+            <div class="comment-text">宾得67那组第二帧的人像和枯枝叠得最自然，后面几帧枝干太密了。叠加顺序真的很关键。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. 相关资讯 -->
+      <section class="section" id="news">
+        <h2 class="section-title">另类影像相关资讯</h2>
+        <div class="news-list">
+          <div class="news-item">
+            <span class="news-date">2026-11-08</span>
+            <div class="news-body">
+              <div class="news-title">「暗箱底片修复计划」第7辑收录9组霉斑样本</div>
+              <div class="news-summary">该辑涵盖柯达 Gold 200 与富士 C200 两种负片，受潮时长均在两年以上。编辑说明中新增显影温度对照表，两组样本分别用 38°C 与 42°C 显影。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026-11-07</span>
+            <div class="news-body">
+              <div class="news-title">故障艺术专题「数据腐蚀」筛除23组滤镜投稿</div>
+              <div class="news-summary">专题最终收录14组手动介入作品，排除标准为未记录任何可复现操作步骤。专题页附有 JPEG 头部字节偏移量截图，供投稿者对照自查。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026-11-05</span>
+            <div class="news-body">
+              <div class="news-title">灰阶发布数据腐蚀第二组，改用 PNG 格式破坏</div>
+              <div class="news-summary">作者称 PNG 无损格式下色块边缘更细碎，但缺少 JPEG 压缩噪点参与。两组并排展示，第三组计划尝试 WebP 格式。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026-11-03</span>
+            <div class="news-body">
+              <div class="news-title">午后窗帘光系列补拍黄昏时段</div>
+              <div class="news-summary">黄昏光比从正午的 1:2 变为 1:2.5，纱帘仍为两层。摄影师在说明中更新了三个时段的完整记录，收藏比升至 14%。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026-10-30</span>
+            <div class="news-body">
+              <div class="news-title">宾得67双重曝光8帧全部上传</div>
+              <div class="news-summary">每帧标注叠加顺序与曝光补偿值，末帧因补偿不足偏暗。作者在说明中提醒叠加顺序影响枝干走向，建议先拍主体后拍背景。</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="news-date">2026-10-25</span>
+            <div class="news-body">
+              <div class="news-title">宝丽来移膜试验补充失败样本，38°C完整率约六成</div>
+              <div class="news-summary">新增三张微距照片展示乳剂层断裂纹理。作者统计五次试验结果：38°C 水温下完整率约六成，42°C 降至三成左右。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. 相关推荐 -->
+      <section class="section" id="related">
+        <h2 class="section-title">相关推荐与索引</h2>
+        <div class="rec-tags">
+          <a href="/#featured" class="rec-tag">底片霉斑修复</a>
+          <a href="/#featured" class="rec-tag">JPEG字节破坏</a>
+          <a href="/#featured" class="rec-tag">交叉冲洗偏色</a>
+          <a href="/#featured" class="rec-tag">私房光比记录</a>
+          <a href="/#featured" class="rec-tag">宝丽来移膜</a>
+          <a href="/#featured" class="rec-tag">像素排序脚本</a>
+          <a href="/#featured" class="rec-tag">医学插图拼贴</a>
+          <a href="/#featured" class="rec-tag">宾得67双重曝光</a>
+        </div>
+      </section>
+
+      <!-- 11. 补充板块：热门榜单 -->
+      <section class="section" id="ranking">
+        <h2 class="section-title">本周另类影像热度榜</h2>
+        <div class="ranking-list">
+          <div class="rank-item">
+            <span class="rank-num top1">1</span>
+            <span class="rank-name">数据腐蚀：JPEG头部字节拆解14组</span>
+            <span class="rank-score">3.4k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num top2">2</span>
+            <span class="rank-name">午后窗帘光：素人模特9个局部特写</span>
+            <span class="rank-score">2.7k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num top3">3</span>
+            <span class="rank-name">底片霉斑修复第7辑：柯达Gold200三年霉变</span>
+            <span class="rank-score">2.1k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">4</span>
+            <span class="rank-name">像素排序脚本：Processing重排人像亮度</span>
+            <span class="rank-score">1.9k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">5</span>
+            <span class="rank-name">解剖图鉴拼贴：19世纪医学插画×电路板</span>
+            <span class="rank-score">1.8k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">6</span>
+            <span class="rank-name">交叉冲洗偏色对照：富士C200在E-6工艺下</span>
+            <span class="rank-score">1.5k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">7</span>
+            <span class="rank-name">宾得67双重曝光8帧：人像与枯枝</span>
+            <span class="rank-score">1.2k</span>
+          </div>
+          <div class="rank-item">
+            <span class="rank-num">8</span>
+            <span class="rank-name">宝丽来移膜试验：38°C与42°C完整率对照</span>
+            <span class="rank-score">980</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. 投稿互动 -->
+      <section class="section" id="submit">
+        <h2 class="section-title">投稿与交流</h2>
+        <div class="submit-cta">
+          <div>
+            <h3>上传你的另类影像作品</h3>
+            <p>欢迎投稿胶片实验、故障艺术、暗黑拼贴、私房自然光等方向的作品。请附创作方式与关键参数，便于同行参考。</p>
+          </div>
+          <button class="submit-btn" onclick="alert('投稿入口为示例功能，暂未开放。')">投稿入口</button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 右侧辅助栏 -->
+    <aside class="aux-sidebar">
+      <div class="aux-card">
+        <h3>本周热榜</h3>
+        <div class="aux-list">
+          <a href="/#featured"><span>数据腐蚀14组</span><span class="aux-num">3.4k</span></a>
+          <a href="/#featured"><span>午后窗帘光9张</span><span class="aux-num">2.7k</span></a>
+          <a href="/#featured"><span>底片霉斑修复第7辑</span><span class="aux-num">2.1k</span></a>
+          <a href="/#featured"><span>像素排序脚本</span><span class="aux-num">1.9k</span></a>
+          <a href="/#featured"><span>解剖图鉴拼贴</span><span class="aux-num">1.8k</span></a>
+        </div>
+      </div>
+      <div class="aux-card">
+        <h3>热门标签</h3>
+        <div class="aux-tag-cloud">
+          <span>底片霉斑</span><span>故障艺术</span><span>交叉冲洗</span><span>私房光比</span>
+          <span>双重曝光</span><span>像素排序</span><span>宝丽来移膜</span><span>暗黑拼贴</span>
+          <span>医学插图</span><span>漏光实验</span><span>手工介入</span><span>数据腐蚀</span>
+        </div>
+      </div>
+      <div class="aux-card">
+        <h3>更新节奏</h3>
+        <div class="aux-list">
+          <a href="/#latest"><span>每日新增</span><span class="aux-num">3-8 组</span></a>
+          <a href="/#news"><span>资讯更新</span><span class="aux-num">11-08</span></a>
+          <a href="/#deep-dive"><span>深度解析</span><span class="aux-num">11-06</span></a>
+          <a href="/#ranking"><span>榜单刷新</span><span class="aux-num">每周日</span></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="28" height="28" rx="6" fill="#a67c5b"/>
+            <circle cx="16" cy="13" r="5" stroke="#f0e8e0" stroke-width="2" fill="none"/>
+            <path d="M9 24c0-3.5 3-5.5 7-5.5s7 2 7 5.5" stroke="#3e2a1e" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span>另类图片</span>
+        </div>
+        <p class="footer-desc">
+          覆盖 2023 年至 2026 年 11 月的胶片实验、数字故障、拼贴与私房自然光作品。条目类型以单组实验记录为主，附参数与来源标注。每周一、四更新精选，每日更新动态。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>内容分类</h4>
+        <a href="/#categories">胶片实验</a>
+        <a href="/#categories">故障艺术</a>
+        <a href="/#categories">暗黑拼贴</a>
+        <a href="/#categories">私房自然光</a>
+      </div>
+      <div class="footer-col">
+        <h4>浏览入口</h4>
+        <a href="/#featured">精选条目</a>
+        <a href="/#latest">最新更新</a>
+        <a href="/#ranking">热度榜单</a>
+        <a href="/#deep-dive">深度解析</a>
+      </div>
+      <div class="footer-col">
+        <h4>互动</h4>
+        <a href="/#submit">投稿作品</a>
+        <a href="/#comments">用户评论</a>
+        <a href="/#faq">常见问题</a>
+        <a href="/#news">相关资讯</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 另类图片 · 内容聚合示例页面，条目与数据均为示例生成</span>
+      <span>最后更新：2026-11-08 · 对应「暗箱底片修复计划」第7辑</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 回到顶部 -->
+<button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  'use strict';
+
+  // 菜单切换
+  var menuToggle = document.getElementById('menuToggle');
+  var mainNav = document.getElementById('mainNav');
+  var navOverlay = document.getElementById('navOverlay');
+
+  function closeMenu(){
+    if(mainNav) mainNav.classList.remove('open');
+    if(navOverlay) navOverlay.classList.remove('show');
+    if(menuToggle) menuToggle.setAttribute('aria-expanded','false');
+  }
+
+  if(menuToggle){
+    menuToggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isOpen = mainNav.classList.contains('open');
+      if(isOpen){
+        closeMenu();
+      }else{
+        mainNav.classList.add('open');
+        navOverlay.classList.add('show');
+        menuToggle.setAttribute('aria-expanded','true');
+      }
+    });
+  }
+
+  if(navOverlay){
+    navOverlay.addEventListener('click', closeMenu);
+  }
+
+  // 移动端点击导航后收起
+  if(mainNav){
+    mainNav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        if(window.innerWidth <= 740) closeMenu();
+      });
+    });
+  }
+
+  // Esc 关闭
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  // 回到顶部
+  var backTop = document.getElementById('backTop');
+  if(backTop){
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 600){
+        backTop.classList.add('show');
+      }else{
+        backTop.classList.remove('show');
+      }
+    }, {passive:true});
+
+    backTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  // 搜索筛选
+  var searchInput = document.getElementById('searchInput');
+  var searchBtn = document.getElementById('searchBtn');
+  var cardGrid = document.getElementById('cardGrid');
+  var noResult = document.getElementById('noResult');
+  var noResultWord = document.getElementById('noResultWord');
+
+  function doSearch(){
+    if(!searchInput || !cardGrid) return;
+    var kw = searchInput.value.trim().toLowerCase();
+    var cards = cardGrid.querySelectorAll('.card');
+    var visibleCount = 0;
+    cards.forEach(function(card){
+      var text = card.textContent.toLowerCase();
+      if(!kw || text.indexOf(kw) !== -1){
+        card.style.display = '';
+        visibleCount++;
+      }else{
+        card.style.display = 'none';
+      }
+    });
+    if(kw && visibleCount === 0){
+      if(noResult) noResult.classList.add('show');
+      if(noResultWord) noResultWord.textContent = searchInput.value.trim();
+    }else{
+      if(noResult) noResult.classList.remove('show');
+    }
+  }
+
+  if(searchBtn){
+    searchBtn.addEventListener('click', doSearch);
+  }
+  if(searchInput){
+    searchInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') doSearch();
+    });
+    searchInput.addEventListener('input', function(){
+      if(searchInput.value.trim() === ''){
+        cardGrid.querySelectorAll('.card').forEach(function(c){ c.style.display = ''; });
+        if(noResult) noResult.classList.remove('show');
+      }
+    });
+  }
+
+  // 频道栏当前高亮（简单滚动监听）
+  var channelLinks = document.querySelectorAll('.channel-nav a');
+  var sections = [];
+  channelLinks.forEach(function(link){
+    var href = link.getAttribute('href');
+    if(href && href.indexOf('#') !== -1){
+      var id = href.split('#')[1];
+      var el = document.getElementById(id);
+      if(el) sections.push({id:id, el:el, link:link});
+    }
+  });
+
+  if(sections.length && 'IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          channelLinks.forEach(function(l){ l.classList.remove('active'); });
+          var found = sections.find(function(s){ return s.el === entry.target; });
+          if(found) found.link.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-100px 0px -60% 0px', threshold:0});
+    sections.forEach(function(s){ observer.observe(s.el); });
+  }
+
+})();
+</script>
+
+<!-- FAQPage 结构化数据 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "底片霉斑和普通划痕在扫描件上怎么区分？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "霉斑通常呈树枝状或冰裂纹，边缘有细微的青色或褐色扩散，且沿乳剂层分布；划痕多为直线或弧线，方向与底片运行方向相关，边缘锐利、没有颜色扩散。阿禾第7辑里有一张同时含霉斑和划痕的样本，对照看更清楚：霉斑在暗部呈网状，划痕在亮部呈单线。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "交叉冲洗用 E-6 工艺冲 C-41 负片，偏色能控制吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "只能部分控制。富士 C200 在 E-6 工艺下倾向青绿高光与品红阴影，曝光过 1 到 2 档会加重青绿，欠曝则品红更明显。10 月底更新的对照样本里，同一卷分六段曝光，色偏走向随曝光量变化，说明控制偏色的主要手段是曝光补偿，而非药水温度。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "故障艺术里「字节级破坏」和「滤镜」的效果差别在哪？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "字节级破坏会保留原文件的压缩噪点和块状纹理，色块边缘粗粝、有随机性；滤镜级变形通常更平滑、重复性高，同一预设下不同图片的效果趋同。灰阶的两组作品并排展示时，JPEG 那组的块状边缘和 PNG 那组的细碎条纹差异肉眼可辨。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "私房自然光拍摄，光比记录一般怎么写？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "写两个数：亮部与暗部的亮度比值，以及拍摄时段。「午后窗帘光」系列的记录格式是「上午 1:4、正午 1:2、黄昏 1:2.5，纱帘两层」。光比数据配合时段，另一名摄影师就能判断自己所在时区的类似条件能否复现。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "拼贴用的旧书插图，哪些可以放心用？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "出版年份在 1929 年之前、作者去世超过 50 年的插图，通常进入公有领域，例如 1860 年代《解剖图谱》的扫描件。1980 年代杂志广告、当代摄影画册里的图，即使扫描来源是私人收藏，也仍受版权保护，站内会标「来源存疑」。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "宝丽来移膜失败后，乳剂层还能再用吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "基本不能。乳剂层一旦断裂或收缩，重新贴附时裂纹会扩大。10 月更新的失败样本显示，38°C 水温下乳剂层完整率约六成，42°C 下降到三成左右，失败样本的裂纹走向与水温相关。作者保留失败样本，主要是给后来者看水温与完整率的对应关系。"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- WebSite 结构化数据 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "另类图片",
+  "description": "聚合非主流摄影、故障艺术、暗黑拼贴与私房视觉的影像示例页面",
+  "inLanguage": "zh-CN"
+}
+</script>
+
+</body>
+  </html>
